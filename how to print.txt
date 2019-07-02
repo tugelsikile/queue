@@ -1,0 +1,13 @@
+how to print
+1. install printer
+2. share printer dengan nama "receipt_printer"
+3. test dengan cara :
+	a. buka cmd
+	b. echo "Hello World" > test_file
+	c. print /D:"\\127.0.0.1\receipt_printer" testfile
+	
+	
+TODO
+php.ini
+	post_max_size = 0
+	upload_max_filesize  = 0
