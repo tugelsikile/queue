@@ -4,26 +4,12 @@
     <section class="sidebar">
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="active treeview">
-                <a href="#">
-                    <i class="fa fa-sign-in"></i>
-                    <span>Antrian</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+            <li class="active">
+            
+                <a href="javascript:;" uri="<?php echo base_url('home/antrian_loket');?>" onclick="load_page(this);return false">
+                    <i class="fa fa-credit-card"></i> <span>Antrian Pendaftaran</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="javascript:;" uri="<?php echo base_url('home/antrian_loket');?>" onclick="load_page(this);return false">
-                            <i class="fa fa-credit-card"></i> <span>Antrian Pendaftaran</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" uri="<?php echo base_url('home/antrian_poli');?>" onclick="load_page(this);return false">
-                            <i class="fa fa-credit-card"></i> <span>Antrian Poli</span>
-                        </a>
-                    </li>
-                </ul>
+            
             </li>
             <li class="treeview">
                 <a href="#">

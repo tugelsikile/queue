@@ -16,7 +16,8 @@
     <script type="text/javascript" src="<?php echo base_url('assets/jquery-3.3.1.min.js');?>"></script>
     <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js');?>"></script>
     <script src="<?php echo base_url('assets/gistfile1.js');?>"></script>
-
+<script
+                                src="https://code.responsivevoice.org/responsivevoice.js?key=gctISVcE"></script>
 
     <script>
         var base_url    = '<?php echo base_url();?>';

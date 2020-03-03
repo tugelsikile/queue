@@ -8,8 +8,44 @@ class Entry extends CI_Controller {
     }
 
     public function index(){
-	    $this->load->view('entry');
+        $data['loket'] = $this->dbase->dataResult('poli',array('poli_status'=>1));
+	    $this->load->view('entry',$data);
 	}
+    function insert_antri(){
+        if ($this->input->is_ajax_request()){
+            $json['t'] = 0;
+            $json['msg'] = 'Init Error';
+            $poli_id        = $this->input->post('poli_id');
+            $dtPoli         = $this->dbase->sqlRow("
+                SELECT      p.*,l.loket_kode
+                FROM        tb_poli AS p 
+                LEFT JOIN   tb_loket AS l ON p.loket_id = l.loket_id
+                WHERE       p.poli_id = '".$poli_id."' AND p.poli_status = 1
+                ");
+            if (!$poli_id){
+                $json['msg'] = 'Pilih poli lebih dulu';
+            } elseif (!$dtPoli) {
+                $json['msg'] = 'Poli yang dipilih tidak tersedia';
+            } else {
+                $kode_loket = $dtPoli->loket_kode;
+                $loket_id   = $dtPoli->loket_id;
+                $nomorAkhir = $this->dbase->dataRow('queue',array('DATE(que_date)'=>date('Y-m-d'),'loket_id'=>$loket_id),'MAX(que_kode2) AS nomor')->nomor;
+                if (!$nomorAkhir){
+                    $nomorAkhir = 1;
+                } else {
+                    $nomorAkhir = (int)$nomorAkhir;
+                }
+                $nomorAkhir++;
+                $nomorAkhir = str_pad($nomorAkhir, 3,STR_PAD_LEFT);
+                $this->dbase->dataInsert('queue',array(
+                    'loket_id' => $loket_id, 'poli_id' => $poli_id, 'que_kode' => $kode_loket, 'que_kode2' => $nomorAkhir
+                ));
+                $json['t'] = 1;
+
+            }
+            die(json_encode($json));
+        }
+    }
 	function show_poli(){
         $data['poli']   = $this->dbase->dataResult('poli',array('poli_status'=>1));
         $this->load->view('entry/show_poli',$data);
