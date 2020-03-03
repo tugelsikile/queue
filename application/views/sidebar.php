@@ -22,7 +22,7 @@
                 <ul class="treeview-menu">
                     <li>
                         <a href="<?php echo base_url('entry');?>" target="_blank" >
-                            <i class="fa fa-rocket"></i> <span>Tampilan Pengunjung</span>
+                            <i class="fa fa-rocket"></i> <span>Pemilihan Poli</span>
                         </a>
                     </li>
                     <li>

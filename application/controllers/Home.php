@@ -8,7 +8,7 @@ class Home extends CI_Controller {
             redirect(base_url('account/login'));
         }
         $data['data'] = $this->dbase->dataResult('loket',array('loket_status'=>1));
-        $data['body'] = 'home';
+        $data['body'] = 'antrian_loket';
         if ($this->input->is_ajax_request()){
             $this->load->view('home',$data);
         } else {
