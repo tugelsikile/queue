@@ -712,4 +712,27 @@ class Admin extends CI_Controller {
         }
         die(json_encode($json));
     }
+    public function printer(){
+	    $data = $this->dbase->dataRow('printer');
+	    //die(var_dump($data));
+	    $this->load->view('admin/printer', ['data' => $data]);
+    }
+    public function printer_save() {
+	    $json['t'] = 0;
+	    $json['msg'] = 'Gagal';
+	    $nama_printer = $this->input->post('nama_printer');
+	    $ip_printer = $this->input->post('ip_printer');
+	    $dataPrinter = $this->dbase->dataRow('printer');
+	    if ($dataPrinter == null) {
+            $dataPrinter = $this->dbase->dataInsert('printer', ['name' => $nama_printer, 'ip' => $ip_printer]);
+        } else {
+	        $dataPrinter = $this->dbase->dataUpdate('printer',['id' => $dataPrinter->id], ['name' => $nama_printer, 'ip' => $ip_printer]);
+        }
+        if (!$dataPrinter){
+            $json['msg'] = 'Database error';
+        } else {
+            $json['t'] = 1;
+            $json['msg'] = '<strong>Printer</strong> berhasil disimpan';
+        }
+    }
 }

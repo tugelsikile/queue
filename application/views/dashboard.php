@@ -43,6 +43,8 @@
             $('.content-wrapper').load(url);
             $('.sidebar-menu .active').removeClass('active');
             $(ob).parents('li').addClass('active');
+            //window.history.pushState({},document.title,url);
+            //window.history.replaceState({},document.title,url);
         }
         //responsiveVoice.speak("selamat pagi dan siang");
         function show_modal(ob) {

@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5fedd6a-4c0e-47f1-82df-1df2a3002528" name="Default" comment="" />
+    <list default="true" id="f5fedd6a-4c0e-47f1-82df-1df2a3002528" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/application/views/admin/printer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/antri.sql" beforeDir="false" afterPath="$PROJECT_DIR$/antri.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Cetak.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Cetak.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,15 +41,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../antrian" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/barcode" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\queue\application\views\admin\form" />
       <recent name="C:\xampp\htdocs\queue\application\views\admin" />
+      <recent name="C:\xampp\htdocs\queue\application\views\admin\form" />
       <recent name="C:\xampp\htdocs\queue\application\views" />
       <recent name="C:\xampp\htdocs\queue\application\controllers" />
       <recent name="C:\xampp\htdocs\queue\application\views\entry" />
@@ -86,7 +96,7 @@
       <workItem from="1525309678905" duration="3313000" />
       <workItem from="1525313046791" duration="230000" />
       <workItem from="1525313279215" duration="5295000" />
-      <workItem from="1661946564377" duration="4588000" />
+      <workItem from="1661946564377" duration="8515000" />
     </task>
     <servers />
   </component>
@@ -102,9 +112,9 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="619" y="341" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1661946564609" />
-    <state x="639" y="254" width="845" height="524" key="find.popup" timestamp="1661948870711">
+    <state x="639" y="254" width="845" height="524" key="find.popup" timestamp="1661960702899">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="639" y="254" width="845" height="524" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1661948870711" />
+    <state x="639" y="254" width="845" height="524" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1661960702899" />
   </component>
 </project>

@@ -116,6 +116,11 @@
                                 <i class="fa fa-youtube-play"></i> <span>Video</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="javascript:;" uri="<?= site_url('admin/printer') ?>" onclick="load_page(this); return false">
+                                <i class="fa fa-print"></i> <span>Printer</span>
+                            </a>
+                        </li>
                     </ul>
                 </a>
             </li>
