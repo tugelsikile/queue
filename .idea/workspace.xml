@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5fedd6a-4c0e-47f1-82df-1df2a3002528" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Cetak.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Cetak.php" afterDir="false" />
-    </list>
+    <list default="true" id="f5fedd6a-4c0e-47f1-82df-1df2a3002528" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +86,7 @@
       <workItem from="1525309678905" duration="3313000" />
       <workItem from="1525313046791" duration="230000" />
       <workItem from="1525313279215" duration="5295000" />
-      <workItem from="1661946564377" duration="4341000" />
+      <workItem from="1661946564377" duration="4588000" />
     </task>
     <servers />
   </component>

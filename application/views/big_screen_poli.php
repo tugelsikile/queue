@@ -196,7 +196,7 @@
             </div>
         </div>
     </div>
-    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=gctISVcE"></script>
     <script>
 
         function read_entry(){
