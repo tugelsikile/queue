@@ -1,8 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require_once APPPATH . 'libraries\escpos\autoload.php';
+require_once FCPATH . '/vendor/autoload.php';
 
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 use Mike42\Escpos\CapabilityProfile;
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
@@ -90,12 +92,12 @@ class Cetak extends CI_Controller {
                                     $printer -> setTextSize(8, 8);
                                     $printer -> text($kode_lengkap);
                                     $printer -> feed();
-                                    $printer -> qrCode($kode_lengkap,Printer::QR_ECLEVEL_L, 8);
+                                    //$printer -> qrCode($kode_lengkap,Printer::QR_ECLEVEL_L, 8);
                                     $printer -> feed();
                                     $printer -> setTextSize(1, 1);
                                     $printer -> text($data_loket->loket_name."\n");
                                     $printer -> text($this->conv->hariIndo(date('N')).", ".$this->conv->tglIndo(date('Y-m-d')));
-                                    $printer -> feed();
+                                    $printer -> feed(2);
                                     $printer -> text("\n>--------------------->\n");
 
                                    //struk poli
@@ -109,7 +111,7 @@ class Cetak extends CI_Controller {
                                     $printer -> setTextSize(8, 8);
                                     $printer -> text($kode_poli_lengkap);
                                     $printer -> feed();
-                                    $printer -> qrCode($kode_poli_lengkap.' - '.$data_user->user_fullname,Printer::QR_ECLEVEL_L, 8);
+                                    //$printer -> qrCode($kode_poli_lengkap.' - '.$data_user->user_fullname,Printer::QR_ECLEVEL_L, 8);
                                     $printer -> feed();
                                     $printer -> setTextSize(1, 1);
                                     $printer -> text($data_poli->poli_name."\n");

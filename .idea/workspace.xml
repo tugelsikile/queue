@@ -2,66 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5fedd6a-4c0e-47f1-82df-1df2a3002528" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpRuntime.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Cetak.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Cetak.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Dokter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Dokter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/account/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/account/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_dokter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_dokter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_dokter_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_dokter_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_jadwal.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_jadwal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_jadwal_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_jadwal_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_loket.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_loket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_loket_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_loket_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_poli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_poli_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_poli_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_runing_text_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_runing_text_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_spesialis.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_spesialis.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_spesialis_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_spesialis_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_user_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_user_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_video.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_video.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_video_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_video_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/add_dokter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/add_dokter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/add_jadwal.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/add_jadwal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/add_loket.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/add_loket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/add_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/add_poli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/add_runing_text.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/add_runing_text.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/add_spesialis.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/add_spesialis.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/add_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/add_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/add_video.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/add_video.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/delete_dokter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/delete_dokter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/delete_jadwal.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/delete_jadwal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/delete_loket.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/delete_loket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/delete_media.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/delete_media.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/delete_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/delete_poli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/delete_runing_text.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/delete_runing_text.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/delete_spesialis.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/delete_spesialis.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/edit_dokter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/edit_dokter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/edit_jadwal.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/edit_jadwal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/edit_loket.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/edit_loket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/edit_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/edit_poli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/edit_runing_text.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/edit_runing_text.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/edit_spesialis.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/edit_spesialis.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/form/edit_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/edit_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/runing_text.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/runing_text.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/antri_statistik.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/antri_statistik.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/antrian.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/antrian.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/antrian_loket.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/antrian_loket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/antrian_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/antrian_poli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/big_screen.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/big_screen.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/big_screen_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/big_screen_poli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/entry.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/entry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/show_antrian.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/show_antrian.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/show_antrian_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/show_antrian_poli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/sidebar.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +90,7 @@
       <workItem from="1525309678905" duration="3313000" />
       <workItem from="1525313046791" duration="230000" />
       <workItem from="1525313279215" duration="5295000" />
-      <workItem from="1661946564377" duration="3261000" />
+      <workItem from="1661946564377" duration="4341000" />
     </task>
     <servers />
   </component>
