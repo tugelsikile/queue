@@ -202,7 +202,7 @@
         function read_entry(){
             responsiveVoice.setDefaultVoice("Indonesian Female");
             $.ajax({
-                url     : '<?php echo base_url('big_screen/read_entry_poli');?>',
+                url     : '<?php echo site_url('big_screen/read_entry_poli');?>',
                 type    : 'POST',
                 dataType: 'JSON',
                 success : function (dt) {

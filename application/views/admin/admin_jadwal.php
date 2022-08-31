@@ -14,7 +14,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title repeat-flag"><i class="fa fa-calendar"></i> Jadwal Dokter : <a href="javascript:;" uri="<?php echo base_url('dokter/admin_dokter');?>" onclick="load_page(this);return false"><?php echo $user->user_fullname;?></a></h3>
+            <h3 class="box-title repeat-flag"><i class="fa fa-calendar"></i> Jadwal Dokter : <a href="javascript:;" uri="<?php echo site_url('dokter/admin_dokter');?>" onclick="load_page(this);return false"><?php echo $user->user_fullname;?></a></h3>
 
             <div class="box-tools pull-right" >
                 <div class="pull-right input-group-sm input-group" style="width: 150px">
@@ -23,7 +23,7 @@
                         <button type="submit" onclick="load_data()" class="btn-cari btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-                <a title="Tambah Jadwal" href="<?php echo base_url('dokter/add_jadwal/'.$data->dr_id);?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
+                <a title="Tambah Jadwal" href="<?php echo site_url('dokter/add_jadwal/'.$data->dr_id);?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
                     <i class="fa fa-plus"></i> Tambah Jadwal
                 </a>
             </div>
@@ -58,7 +58,8 @@
         var keyword     = $('#table_search').val();
         var dr_id       = '<?php echo $data->dr_id;?>';
         $.ajax({
-            url     : base_url + 'dokter/admin_jadwal_data',
+            //url     : base_url + 'dokter/admin_jadwal_data',
+            url     : '<?= site_url()?>/dokter/admin_jadwal_data',
             type    : 'POST',
             dataType: 'JSON',
             data    : { keyword:keyword, dr_id:dr_id },

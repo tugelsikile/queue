@@ -67,7 +67,7 @@
         var que_id  = $(ob).attr('que');
         if (que_id.length > 0){
             $.ajax({
-                url     : base_url + 'home/insert_call',
+                url     : '<?= site_url()?>/home/insert_call',
                 type    : 'POST',
                 dataType: 'JSON',
                 data    : { que_id:que_id},
@@ -85,7 +85,7 @@
         var keyword     = $('#table_search').val();
         var loket_id    = $('.antri-loket-id').val();
         $.ajax({
-            url     : base_url + 'home/data_antri',
+            url     : '<?= site_url()?>/home/data_antri',
             type    : 'POST',
             dataType: 'JSON',
             data    : { keyword:keyword, loket_id:loket_id},

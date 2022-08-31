@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 
 	public function index(){
         if (!$this->session->userdata('queue')){
-            redirect(base_url('account/login'));
+            redirect(site_url('account/login'));
         }
         $data['data'] = $this->dbase->dataResult('loket',array('loket_status'=>1));
         $data['body'] = 'home';
@@ -17,7 +17,7 @@ class Home extends CI_Controller {
 	}
 	function antrian_loket(){
         if (!$this->session->userdata('queue')){
-            redirect(base_url('account/login'));
+            redirect(site_url('account/login'));
         }
         $data['data'] = $this->dbase->dataResult('loket',array('loket_status'=>1));
         $data['body'] = 'antrian_loket';
@@ -29,7 +29,7 @@ class Home extends CI_Controller {
     }
     function antrian_poli(){
         if (!$this->session->userdata('queue')){
-            redirect(base_url('account/login'));
+            redirect(site_url('account/login'));
         }
         $data['data'] = $this->dbase->dataResult('poli',array('poli_status'=>1));
         $data['body'] = 'antrian_poli';
@@ -41,7 +41,7 @@ class Home extends CI_Controller {
     }
 	function antri(){
         if (!$this->session->userdata('queue')){
-            redirect(base_url('account/login'));
+            redirect(site_url('account/login'));
         }
         $data['data']   = $this->dbase->dataResult('queue',array('DATE(que_date)'=>date('Y-m-d'),'que_status'=>0));
         $data['loket']  = $this->dbase->dataResult('loket',array('loket_status'=>1));
@@ -112,7 +112,7 @@ class Home extends CI_Controller {
     }
     function antri_statistik(){
         if (!$this->session->userdata('queue')){
-            redirect(base_url('account/login'));
+            redirect(site_url('account/login'));
         }
         $data['data']   = $this->dbase->dataResult('queue');
         $data['loket']  = $this->dbase->dataResult('loket',array('loket_status'=>1));

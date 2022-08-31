@@ -50,7 +50,7 @@
         $('.loading').show();
         var loket_id = '<?php echo $poli->poli_id;?>'
         $.ajax({
-            url     : base_url + 'home/load_antrian_poli',
+            url     : '<?= site_url()?>/home/load_antrian_poli',
             type    : 'POST',
             dataType: 'JSON',
             data    : { loket_id:loket_id },
@@ -97,7 +97,7 @@
         if (que_id){
             $('.loading').show();
             $.ajax({
-                url     : base_url + 'home/call_antri_poli',
+                url     : '<?= site_url()?>/home/call_antri_poli',
                 type    : 'POST',
                 dataType: 'JSON',
                 data    : { que_id:que_id },

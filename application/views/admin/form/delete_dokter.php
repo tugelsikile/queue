@@ -10,7 +10,7 @@
     $('#modalConfirm #new_form').submit(function (e) {
         $('#modalConfirm .btn-submit').html('<i class="fa fa-spin fa-refresh"></i> Ya').addClass('disabled').prop({'disabled':true});
         $.ajax({
-            url     : base_url + 'dokter/delete_dokter_submit',
+            url     : '<?= site_url()?>/dokter/delete_dokter_submit',
             type    : 'POST',
             dataType: 'JSON',
             data    : $(this).serialize(),

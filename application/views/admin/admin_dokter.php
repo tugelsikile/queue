@@ -35,7 +35,7 @@
                         ?>
                     </select>
                 </div>
-                <a title="Tambah Dokter" href="<?php echo base_url('dokter/add_dokter');?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
+                <a title="Tambah Dokter" href="<?php echo site_url('dokter/add_dokter');?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
                     <i class="fa fa-plus"></i> Tambah Dokter
                 </a>
             </div>
@@ -72,7 +72,8 @@
         var keyword     = $('#table_search').val();
         var spc_id      = $('.spc_id').val();
         $.ajax({
-            url     : base_url + 'dokter/admin_dokter_data',
+            //url     : base_url + 'dokter/admin_dokter_data',
+            url     : '<?= site_url() ?>/dokter/admin_dokter_data',
             type    : 'POST',
             dataType: 'JSON',
             data    : { keyword:keyword, spc_id:spc_id },

@@ -5,17 +5,17 @@ class Account extends CI_Controller {
 
 	public function index(){
 	    if (!$this->session->userdata('queue')){
-	        redirect(base_url('account/login'));
+	        redirect(site_url('account/login'));
         }
 		$this->load->view('welcome_message');
 	}
 	function logout(){
 	    $this->session->sess_destroy();
-	    redirect(base_url(''));
+	    redirect(site_url(''));
     }
 	function login(){
 	    if ($this->session->userdata('queue')){
-	        redirect(base_url());
+	        redirect(site_url());
         }
         $this->load->view('account/login');
     }

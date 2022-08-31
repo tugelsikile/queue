@@ -23,7 +23,7 @@
                         <button type="submit" onclick="load_data()" class="btn-cari btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-                <a title="Tambah Pengguna" href="<?php echo base_url('admin/add_user');?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
+                <a title="Tambah Pengguna" href="<?php echo site_url('admin/add_user');?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
                     <i class="fa fa-plus"></i> Tambah Pengguna
                 </a>
             </div>
@@ -58,7 +58,8 @@
         $('.btn-cari').html('<i class="fa fa-spin fa-refresh"></i>');
         var keyword     = $('#table_search').val();
         $.ajax({
-            url     : base_url + 'admin/admin_user_data',
+            //url     : base_url + 'admin/admin_user_data',
+            url     : '<?= site_url() ?>/admin/admin_user_data',
             type    : 'POST',
             dataType: 'JSON',
             data    : { keyword:keyword},

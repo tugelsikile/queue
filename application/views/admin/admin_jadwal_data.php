@@ -7,8 +7,8 @@ if ($data){
             <td><?php echo date('H:i',strtotime($val->djad_time_start));?></td>
             <td><?php echo date('H:i',strtotime($val->djad_time_end));?></td>
             <td>
-                <a title="Rubah data" class="btn btn-sm btn-primary" href="<?php echo base_url('dokter/edit_jadwal/'.$val->djad_id);?>" onclick="show_modal(this);return false"><i class="fa fa-pencil"></i> Rubah</a>
-                <a title="Hapus data" href="<?php echo base_url('dokter/delete_jadwal/'.$val->djad_id);?>" onclick="konfirmasi(this);return false" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a>
+                <a title="Rubah data" class="btn btn-sm btn-primary" href="<?php echo site_url('dokter/edit_jadwal/'.$val->djad_id);?>" onclick="show_modal(this);return false"><i class="fa fa-pencil"></i> Rubah</a>
+                <a title="Hapus data" href="<?php echo site_url('dokter/delete_jadwal/'.$val->djad_id);?>" onclick="konfirmasi(this);return false" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a>
             </td>
         </tr>
         <?php

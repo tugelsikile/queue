@@ -8,7 +8,7 @@ class Dokter extends CI_Controller {
     }
 	public function index(){
 	    if (!$this->session->userdata('queue')){
-	        redirect(base_url('account/login'));
+	        redirect(site_url('account/login'));
         }
         $data['data']   = $this->dbase->dataResult('queue',array('DATE(que_date)'=>date('Y-m-d'),'que_status'=>0));
         $data['loket']  = $this->dbase->dataResult('loket',array('loket_status'=>1));

@@ -241,7 +241,7 @@
 
     function show_poli() {
         $('.masking').show();
-        $('.content').load(base_url+'entry/show_poli',function (e) {
+        $('.content').load(site_url+'/entry/show_poli',function (e) {
             $('.masking').hide();
         });
     }
@@ -250,7 +250,7 @@
         var poli_id = $(ob).attr('poli');
         $('.masking').show();
         $.ajax({
-            url     : base_url + 'entry/show_dokter',
+            url     : '<?= site_url()?>/entry/show_dokter',
             data    : { poli_id:poli_id },
             type    : 'POST',
             dataType: 'JSON',
@@ -269,7 +269,7 @@
         var dr_id   = $(ob).attr('data-id');
         $('.masking').show();
         $.ajax({
-            url     : base_url + 'cetak/insert_queue',
+            url     : '<?= site_url()?>/cetak/insert_queue',
             type    : 'POST',
             dataType: 'JSON',
             data    : { dr_id:dr_id },
@@ -290,7 +290,7 @@
         if (poli_id.length > 0 && loket_id > 0){
             $('.masking').show();
             $.ajax({
-                url     : '<?php echo base_url('home/insert_queue');?>',
+                url     : '<?php echo site_url('home/insert_queue');?>',
                 type    : 'POST',
                 dataType: 'JSON',
                 data    : { poli_id:poli_id, loket_id:loket_id},
@@ -301,7 +301,7 @@
                             $('.pl_'+poli_id).find('button').addClass('btn-default').removeClass('btn-danger').attr({'onclick':''});
                             $('.pl_'+poli_id+' button strong').after('<br><small>(Tiket Habis)</small>');
                         }
-                        $('.iframe').load('<?php echo base_url('cetak/cetak_struk/');?>'+dt.id);
+                        $('.iframe').load('<?php echo site_url('cetak/cetak_struk/');?>'+dt.id);
 
                         //$('#printing').attr({'src':'<?php //echo base_url('home/cetak_antrian/');?>'+dt.id});
                         //window.frames["printing"].focus();

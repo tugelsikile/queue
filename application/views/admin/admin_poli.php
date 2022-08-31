@@ -23,7 +23,7 @@
                         <button type="submit" onclick="load_data()" class="btn-cari btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-                <a title="Tambah Poli" href="<?php echo base_url('admin/add_poli');?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
+                <a title="Tambah Poli" href="<?php echo site_url('admin/add_poli');?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
                     <i class="fa fa-plus"></i> Tambah Poli
                 </a>
             </div>
@@ -58,7 +58,8 @@
         var keyword     = $('#table_search').val();
         var loket_id    = $('.loket_id').val();
         $.ajax({
-            url     : base_url + 'admin/admin_poli_data',
+            //url     : base_url + 'admin/admin_poli_data',
+            url     : '<?= site_url() ?>/admin/admin_poli_data',
             type    : 'POST',
             dataType: 'JSON',
             data    : { keyword:keyword},

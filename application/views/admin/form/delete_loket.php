@@ -9,7 +9,7 @@
     $('#modalConfirm #new_form').submit(function (e) {
         $('#modalConfirm .btn-submit').html('<i class="fa fa-spin fa-refresh"></i> Ya').addClass('disabled').prop({'disabled':true});
         $.ajax({
-            url     : base_url + 'admin/delete_loket_submit',
+            url     : '<?= site_url()?>/admin/delete_loket_submit',
             type    : 'POST',
             dataType: 'JSON',
             data    : $(this).serialize(),

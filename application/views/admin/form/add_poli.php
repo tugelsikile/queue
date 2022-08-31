@@ -43,7 +43,8 @@
         var form = $('#modal1 #new_form')[0];
         var formData = new FormData(form);
         $.ajax({
-            url     : base_url + 'admin/add_poli_submit',
+            //url     : base_url + 'admin/add_poli_submit',
+            url     : '<?= site_url() ?>/admin/add_poli_submit',
             type    : 'POST',
             dataType: 'JSON',
             contentType: false,

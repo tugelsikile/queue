@@ -66,7 +66,7 @@
         var loket_id = $(ob).attr('data-id');
         $('.loading').show();
         $.ajax({
-            url     : base_url + 'home/show_antrian_poli',
+            url     : '<?= site_url()?>/home/show_antrian_poli',
             type    : 'POST',
             dataType: 'JSON',
             data    : { loket_id:loket_id },
@@ -88,7 +88,7 @@
         var que_id  = $(ob).attr('que');
         if (que_id.length > 0){
             $.ajax({
-                url     : base_url + 'home/insert_call',
+                url     : '<?= site_url()?>/home/insert_call',
                 type    : 'POST',
                 dataType: 'JSON',
                 data    : { que_id:que_id},

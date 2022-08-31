@@ -47,9 +47,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </form>
     </div>
     <div class="text-center">
-        <a href="<?php echo base_url('big_screen/poli');?>">Antrian Pendaftaran</a> |
-        <a href="<?php echo base_url('big_screen/poli');?>">Antrian Poli</a> |
-        <a href="<?php echo base_url('entry');?>">Pengunjung</a>
+        <a href="<?php echo site_url('big_screen/poli');?>">Antrian Pendaftaran</a> |
+        <a href="<?php echo site_url('big_screen/poli');?>">Antrian Poli</a> |
+        <a href="<?php echo site_url('entry');?>">Pengunjung</a>
     </div>
 </div>
 
@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $('#loginForm .status').html('');
         $('#loginForm .has-error').removeClass('has-error');
         $.ajax({
-            url     : '<?php echo base_url('account/login_submit');?>',
+            url     : '<?php echo site_url('account/login_submit');?>',
             type    : 'POST',
             data    : $(this).serialize(),
             dataType: 'JSON',
@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $('.status').html(dt.msg);
                     $('#loginForm .'+dt.class).addClass('has-error');
                 } else {
-                    window.location.href = '<?php echo base_url('');?>'
+                    window.location.href = '<?php echo site_url('');?>'
                 }
             }
         })

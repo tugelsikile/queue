@@ -200,7 +200,7 @@
 
         function read_entry(){
             $.ajax({
-                url     : '<?php echo base_url('big_screen/read_entry');?>',
+                url     : '<?php echo site_url('big_screen/read_entry');?>',
                 type    : 'POST',
                 dataType: 'JSON',
                 success : function (dt) {

@@ -28,8 +28,8 @@ if (!$data){
                 ?>
             </td>
             <td>
-                <a title="Rubah data" href="<?php echo base_url('admin/edit_user/'.$val->user_id);?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> Rubah</a>
-                <a title="Hapus data" href="<?php echo base_url('admin/delete_user/'.$val->user_id);?>" onclick="konfirmasi(this);return false" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a>
+                <a title="Rubah data" href="<?php echo site_url('admin/edit_user/'.$val->user_id);?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> Rubah</a>
+                <a title="Hapus data" href="<?php echo site_url('admin/delete_user/'.$val->user_id);?>" onclick="konfirmasi(this);return false" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a>
             </td>
         </tr>
         <?php

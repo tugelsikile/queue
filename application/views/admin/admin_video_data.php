@@ -11,7 +11,7 @@ if ($data){
             </td>
             <td><?php echo $val->media_name;?></td>
             <td>
-                <a title="Hapus data" href="<?php echo base_url('admin/delete_video/'.$val->media_id);?>" onclick="konfirmasi(this);return false" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a>
+                <a title="Hapus data" href="<?php echo site_url('admin/delete_video/'.$val->media_id);?>" onclick="konfirmasi(this);return false" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a>
             </td>
         </tr>
         <?php

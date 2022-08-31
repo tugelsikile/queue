@@ -23,7 +23,7 @@
                         <button type="submit" onclick="load_data()" class="btn-cari btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-                <a title="Tambah Spesialisasi" href="<?php echo base_url('dokter/add_spesialis');?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
+                <a title="Tambah Spesialisasi" href="<?php echo site_url('dokter/add_spesialis');?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
                     <i class="fa fa-plus"></i> Tambah Spesialisasi
                 </a>
             </div>
@@ -56,7 +56,8 @@
         $('.btn-cari').html('<i class="fa fa-spin fa-refresh"></i>');
         var keyword     = $('#table_search').val();
         $.ajax({
-            url     : base_url + 'dokter/admin_spesialis_data',
+            //url     : base_url + 'dokter/admin_spesialis_data',
+            url     : '<?= site_url() ?>/dokter/admin_spesialis_data',
             type    : 'POST',
             dataType: 'JSON',
             data    : { keyword:keyword },

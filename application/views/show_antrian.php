@@ -49,7 +49,7 @@
         $('.loading').show();
         var loket_id = '<?php echo $loket->loket_id;?>'
         $.ajax({
-            url     : base_url + 'home/load_antrian',
+            url     : '<?= site_url()?>/home/load_antrian',
             type    : 'POST',
             dataType: 'JSON',
             data    : { loket_id:loket_id },
@@ -94,7 +94,7 @@
         if (que_id){
             $('.loading').show();
             $.ajax({
-                url     : base_url + 'home/call_antri',
+                url     : '<?= site_url()?>/home/call_antri',
                 type    : 'POST',
                 dataType: 'JSON',
                 data    : { que_id:que_id },

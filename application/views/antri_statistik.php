@@ -128,7 +128,7 @@
         var bulan       = $('.bulan').val();
         var tahun       = $('.tahun').val();
         $.ajax({
-            url     : base_url + 'home/data_statistik',
+            url     : '<?= site_url()?>/home/data_statistik',
             type    : 'POST',
             dataType: 'JSON',
             data    : { keyword:keyword, loket_id:loket_id, poli_id:poli, tgl:tgl, bulan:bulan, tahun:tahun},

@@ -34,7 +34,7 @@
         $('#modal1 .btn-submit').html('<i class="fa fa-spin fa-refresh"></i> Simpan').addClass('disabled').prop({'disabled':true});
         $('#modal1 #new_form .has-error').removeClass('has-error');
         $.ajax({
-            url     : base_url + 'dokter/edit_jadwal_submit',
+            url     : '<?= site_url()?>/dokter/edit_jadwal_submit',
             type    : 'POST',
             dataType: 'JSON',
             data    : $(this).serialize(),

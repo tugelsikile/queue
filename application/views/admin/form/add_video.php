@@ -81,7 +81,7 @@
                     return xhr;
                 },
                 type 		: 'POST',
-                url 		: base_url + 'admin/upload_video',
+                url 		: '<?= site_url()?>/admin/upload_video',
                 data 		: formdata,
                 processData : false,
                 contentType : false,

@@ -44,7 +44,7 @@
         $('#modal1 .btn-submit').html('<i class="fa fa-spin fa-refresh"></i> Simpan').addClass('disabled').prop({'disabled':true});
         $('#modal1 #new_form .has-error').removeClass('has-error');
         $.ajax({
-            url     : base_url + 'admin/edit_loket_submit',
+            url     : '<?= site_url()?>/admin/edit_loket_submit',
             type    : 'POST',
             dataType: 'JSON',
             data    : $(this).serialize(),

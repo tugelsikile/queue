@@ -1,11 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-//require_once APPPATH . 'libraries\escpos\autoload.php';
-//use Mike42\Escpos\Printer;
-//use Mike42\Escpos\EscposImage;
-//use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
-//use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+require_once APPPATH . 'libraries\escpos\autoload.php';
+
+use Mike42\Escpos\CapabilityProfile;
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
 
 class Cetak extends CI_Controller {
 
@@ -68,57 +70,62 @@ class Cetak extends CI_Controller {
                                 $json['msg'] = 'Printer belum diset';
                             } else {
                                 $json['msg'] = 'OK';
-//                                $connector = new WindowsPrintConnector($dt_rs->rs_printer_name);
-//                                //$connector = new NetworkPrintConnector("192.168.1.169", 9100);
-//                                $printer = new Printer($connector);
-//                                try {
-//                                    //struk pendaftaran
-//                                    $tux = EscposImage::load(FCPATH . 'assets/img/logo-small.png', false);
-//                                    $printer -> setJustification(Printer::JUSTIFY_CENTER);
-//                                    $printer -> bitImage($tux);
-//                                    $printer -> text("____________________");
-//                                    $printer -> feed();
-//                                    $printer -> text("Nomor Antrian :");
-//                                    $printer -> feed();
-//                                    $printer -> setTextSize(8, 8);
-//                                    $printer -> text($kode_lengkap);
-//                                    $printer -> feed();
-//                                    $printer -> qrCode($kode_lengkap,Printer::QR_ECLEVEL_L, 8);
-//                                    $printer -> feed();
-//                                    $printer -> setTextSize(1, 1);
-//                                    $printer -> text($data_loket->loket_name."\n");
-//                                    $printer -> text($this->conv->hariIndo(date('N')).", ".$this->conv->tglIndo(date('Y-m-d')));
-//                                    $printer -> feed();
-//                                    $printer -> text("\n>--------------------->\n");
-//
-//                                    //struk poli
-//                                    $tux = EscposImage::load(FCPATH . 'assets/img/logo-small.png', false);
-//                                    $printer -> setJustification(Printer::JUSTIFY_CENTER);
-//                                    $printer -> bitImage($tux);
-//                                    $printer -> text("\n____________________\n");
-//                                    $printer -> feed();
-//                                    $printer -> text("Nomor Antrian Poli :");
-//                                    $printer -> feed();
-//                                    $printer -> setTextSize(8, 8);
-//                                    $printer -> text($kode_poli_lengkap);
-//                                    $printer -> feed();
-//                                    $printer -> qrCode($kode_poli_lengkap.' - '.$data_user->user_fullname,Printer::QR_ECLEVEL_L, 8);
-//                                    $printer -> feed();
-//                                    $printer -> setTextSize(1, 1);
-//                                    $printer -> text($data_poli->poli_name."\n");
-//                                    $printer -> text($data_user->user_fullname."\n");
-//                                    $printer -> text($this->conv->hariIndo(date('N')).", ".$this->conv->tglIndo(date('Y-m-d')));
-//                                    $printer -> feed(3);
-//
-//
-//
-//                                } catch (Exception $e) {
-//                                    /* Images not supported on your PHP, or image file not found */
-//                                    $printer -> text($e -> getMessage() . "\n");
-//                                }
-//
-//                                $printer -> cut();
-//                                $printer -> close();
+                                $printerpath = 'smb://10.100.2.172/receipt_printer';
+                                $profile = CapabilityProfile::load("simple");
+                                $connector = new WindowsPrintConnector($printerpath);
+                                $printer = new Printer($connector, $profile);
+
+                                //$connector = new WindowsPrintConnector($dt_rs->rs_printer_name);
+                                //$connector = new NetworkPrintConnector("192.168.1.169", 9100);
+                                //$printer = new Printer($connector);
+                                try {
+                                    //struk pendaftaran
+                                    $tux = EscposImage::load(FCPATH . 'assets/img/logo-small.png', false);
+                                    $printer -> setJustification(Printer::JUSTIFY_CENTER);
+                                    $printer -> bitImage($tux);
+                                    $printer -> text("____________________");
+                                    $printer -> feed();
+                                    $printer -> text("Nomor Antrian :");
+                                    $printer -> feed();
+                                    $printer -> setTextSize(8, 8);
+                                    $printer -> text($kode_lengkap);
+                                    $printer -> feed();
+                                    $printer -> qrCode($kode_lengkap,Printer::QR_ECLEVEL_L, 8);
+                                    $printer -> feed();
+                                    $printer -> setTextSize(1, 1);
+                                    $printer -> text($data_loket->loket_name."\n");
+                                    $printer -> text($this->conv->hariIndo(date('N')).", ".$this->conv->tglIndo(date('Y-m-d')));
+                                    $printer -> feed();
+                                    $printer -> text("\n>--------------------->\n");
+
+                                   //struk poli
+                                    $tux = EscposImage::load(FCPATH . 'assets/img/logo-small.png', false);
+                                    $printer -> setJustification(Printer::JUSTIFY_CENTER);
+                                    $printer -> bitImage($tux);
+                                    $printer -> text("\n____________________\n");
+                                    $printer -> feed();
+                                    $printer -> text("Nomor Antrian Poli :");
+                                    $printer -> feed();
+                                    $printer -> setTextSize(8, 8);
+                                    $printer -> text($kode_poli_lengkap);
+                                    $printer -> feed();
+                                    $printer -> qrCode($kode_poli_lengkap.' - '.$data_user->user_fullname,Printer::QR_ECLEVEL_L, 8);
+                                    $printer -> feed();
+                                    $printer -> setTextSize(1, 1);
+                                    $printer -> text($data_poli->poli_name."\n");
+                                    $printer -> text($data_user->user_fullname."\n");
+                                    $printer -> text($this->conv->hariIndo(date('N')).", ".$this->conv->tglIndo(date('Y-m-d')));
+                                    $printer -> feed(3);
+
+
+
+                                } catch (Exception $e) {
+                                    /* Images not supported on your PHP, or image file not found */
+                                    $printer -> text($e -> getMessage() . "\n");
+                                }
+
+                                $printer -> cut();
+                                $printer -> close();
                             }
                         }
                         $json['t']  = 1;
