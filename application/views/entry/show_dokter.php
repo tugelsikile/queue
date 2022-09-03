@@ -1,4 +1,4 @@
-<div class="heading-poli">Silahkan pilih dokter</div>
+<div class="heading-poli">SILAHKAN PILIH DOKTER</div>
 <?php
 if (isset($data)){
     if ($data){
@@ -70,4 +70,4 @@ if (isset($data)){
 
 <div class="clearfix"></div>
 
-<div class="col-md-12" style="margin-top: 100px"><a href="javascript:;" onclick="show_poli();return false" class="btn btn-primary btn-block">Kembali</a></div>
+<div class="col-md-12" style="margin-top: 100px"><a href="javascript:;" onclick="show_poli();return false" style="padding:20px;font-size:25px" class="btn btn-primary btn-block">KEMBALI</a></div>

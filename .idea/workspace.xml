@@ -2,13 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5fedd6a-4c0e-47f1-82df-1df2a3002528" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/application/views/admin/printer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/core/MY_Controller.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/views/admin/admin_rumkit.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/video/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/video/4c68f06463519df5c7d0d1abca8c8cdd.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ANTRIAN.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ANTRIAN.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/antri.sql" beforeDir="false" afterPath="$PROJECT_DIR$/antri.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Cetak.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Cetak.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Big_screen.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Big_screen.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Entry.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Entry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/big_screen.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/big_screen.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/big_screen_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/big_screen_poli.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/entry.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/entry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/entry/show_dokter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/entry/show_dokter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/logo-small.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/img/logo-small.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/img/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/video/video01.mp4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
@@ -17,7 +29,8 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
     </execution>
@@ -32,7 +45,27 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/picqer/php-barcode-generator" />
+      <path value="$PROJECT_DIR$/vendor/chillerlan/php-settings-container" />
+      <path value="$PROJECT_DIR$/vendor/mike42/escpos-php" />
+      <path value="$PROJECT_DIR$/vendor/chillerlan/php-qrcode" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/pusher/pusher-php-server" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+    </include_path>
+  </component>
   <component name="ProjectId" id="2E7VMAa6lmOnMHBtJHfUeyYftMn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,18 +74,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/barcode" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/video" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\queue\assets\video" />
+      <recent name="C:\xampp\htdocs\queue\assets\img" />
+      <recent name="C:\xampp\htdocs\queue\assets\barcode" />
       <recent name="C:\xampp\htdocs\queue\application\views\admin" />
       <recent name="C:\xampp\htdocs\queue\application\views\admin\form" />
-      <recent name="C:\xampp\htdocs\queue\application\views" />
-      <recent name="C:\xampp\htdocs\queue\application\controllers" />
-      <recent name="C:\xampp\htdocs\queue\application\views\entry" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -96,7 +129,9 @@
       <workItem from="1525309678905" duration="3313000" />
       <workItem from="1525313046791" duration="230000" />
       <workItem from="1525313279215" duration="5295000" />
-      <workItem from="1661946564377" duration="8515000" />
+      <workItem from="1661946564377" duration="9239000" />
+      <workItem from="1662173102953" duration="308000" />
+      <workItem from="1662173676753" duration="4643000" />
     </task>
     <servers />
   </component>
@@ -108,13 +143,21 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="740" y="272" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1661953955666" />
+    <state x="737" y="336" key="NewPhpClassDialog" timestamp="1662176018769">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="737" y="336" key="NewPhpClassDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1662176018769" />
+    <state x="777" y="441" key="NewPhpFileDialog" timestamp="1662173861197">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="777" y="441" key="NewPhpFileDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1662173861197" />
     <state x="619" y="341" key="com.intellij.ide.util.TipDialog" timestamp="1661946564609">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="619" y="341" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1661946564609" />
-    <state x="639" y="254" width="845" height="524" key="find.popup" timestamp="1661960702899">
+    <state x="639" y="254" width="845" height="524" key="find.popup" timestamp="1662175733085">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="639" y="254" width="845" height="524" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1661960702899" />
+    <state x="639" y="254" width="845" height="524" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1662175733085" />
   </component>
 </project>

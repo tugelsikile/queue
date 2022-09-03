@@ -11,7 +11,7 @@
  Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 31/08/2022 22:43:02
+ Date: 03/09/2022 09:50:04
 */
 
 SET NAMES utf8mb4;
@@ -116,7 +116,7 @@ CREATE TABLE `tb_dokter_jadwal`  (
   PRIMARY KEY (`djad_id`) USING BTREE,
   INDEX `dr_id`(`dr_id`) USING BTREE,
   CONSTRAINT `tb_dokter_jadwal_ibfk_1` FOREIGN KEY (`dr_id`) REFERENCES `tb_dokter` (`dr_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 40 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tb_dokter_jadwal
@@ -131,6 +131,23 @@ INSERT INTO `tb_dokter_jadwal` VALUES (33, 1, 1, 4, '06:00:00', '07:00:00', '12:
 INSERT INTO `tb_dokter_jadwal` VALUES (34, 1, 1, 4, '12:00:00', '13:00:00', '14:00:00', NULL);
 INSERT INTO `tb_dokter_jadwal` VALUES (35, 1, 1, 4, '17:00:00', '18:00:00', '20:00:00', NULL);
 INSERT INTO `tb_dokter_jadwal` VALUES (36, 6, 1, 3, '16:00:00', '17:00:00', '23:00:00', NULL);
+INSERT INTO `tb_dokter_jadwal` VALUES (37, 2, 1, 3, '06:00:00', '07:00:00', '23:59:00', NULL);
+INSERT INTO `tb_dokter_jadwal` VALUES (38, 5, 1, 3, '06:00:00', '07:00:00', '23:59:00', NULL);
+INSERT INTO `tb_dokter_jadwal` VALUES (39, 5, 1, 4, '23:00:00', '00:00:00', '12:00:00', NULL);
+
+-- ----------------------------
+-- Table structure for tb_farmasi
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_farmasi`;
+CREATE TABLE `tb_farmasi`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_farmasi
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_loket
@@ -268,11 +285,12 @@ CREATE TABLE `tb_printer`  (
   `ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `share_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_printer
 -- ----------------------------
+INSERT INTO `tb_printer` VALUES (2, 'receipt_printer', NULL, '10.100.2.172', NULL);
 
 -- ----------------------------
 -- Table structure for tb_queue
@@ -295,7 +313,7 @@ CREATE TABLE `tb_queue`  (
   CONSTRAINT `tb_queue_ibfk_1` FOREIGN KEY (`loket_id`) REFERENCES `tb_loket` (`loket_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `tb_queue_ibfk_2` FOREIGN KEY (`poli_id`) REFERENCES `tb_poli` (`poli_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `tb_queue_ibfk_3` FOREIGN KEY (`dr_id`) REFERENCES `tb_dokter` (`dr_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 274 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 290 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tb_queue
@@ -337,6 +355,22 @@ INSERT INTO `tb_queue` VALUES (270, 13, '2022-08-31 21:11:57', 1, 10, 0, 6, 'A',
 INSERT INTO `tb_queue` VALUES (271, 13, '2022-08-31 21:23:03', 1, 10, 0, 6, 'A', '007');
 INSERT INTO `tb_queue` VALUES (272, 13, '2022-08-31 21:30:41', 1, 10, 0, 6, 'A', '008');
 INSERT INTO `tb_queue` VALUES (273, 13, '2022-08-31 21:30:58', 1, 10, 0, 6, 'A', '009');
+INSERT INTO `tb_queue` VALUES (274, 13, '2022-08-31 23:12:02', 1, 9, 0, 2, 'A', '001');
+INSERT INTO `tb_queue` VALUES (275, 13, '2022-08-31 23:15:22', 1, 9, 0, 2, 'A', '002');
+INSERT INTO `tb_queue` VALUES (276, 13, '2022-08-31 23:16:32', 1, 9, 0, 2, 'A', '003');
+INSERT INTO `tb_queue` VALUES (277, 13, '2022-08-31 23:17:03', 1, 9, 0, 2, 'A', '004');
+INSERT INTO `tb_queue` VALUES (278, 13, '2022-08-31 23:18:07', 1, 9, 0, 2, 'A', '005');
+INSERT INTO `tb_queue` VALUES (279, 13, '2022-08-31 23:19:37', 1, 9, 0, 5, 'A', '006');
+INSERT INTO `tb_queue` VALUES (280, 13, '2022-08-31 23:20:00', 1, 9, 0, 5, 'A', '007');
+INSERT INTO `tb_queue` VALUES (281, 13, '2022-08-31 23:20:12', 1, 9, 0, 5, 'A', '008');
+INSERT INTO `tb_queue` VALUES (282, 13, '2022-08-31 23:21:10', 1, 9, 0, 5, 'A', '009');
+INSERT INTO `tb_queue` VALUES (283, 13, '2022-08-31 23:21:32', 1, 9, 0, 5, 'A', '010');
+INSERT INTO `tb_queue` VALUES (284, 13, '2022-08-31 23:21:45', 1, 9, 0, 5, 'A', '011');
+INSERT INTO `tb_queue` VALUES (285, 13, '2022-08-31 23:21:57', 1, 9, 0, 5, 'A', '012');
+INSERT INTO `tb_queue` VALUES (286, 13, '2022-08-31 23:22:47', 1, 9, 0, 5, 'A', '013');
+INSERT INTO `tb_queue` VALUES (287, 13, '2022-08-31 23:24:05', 1, 9, 0, 5, 'A', '014');
+INSERT INTO `tb_queue` VALUES (288, 13, '2022-08-31 23:24:32', 1, 9, 0, 5, 'A', '015');
+INSERT INTO `tb_queue` VALUES (289, 13, '2022-08-31 23:24:47', 1, 9, 0, 5, 'A', '016');
 
 -- ----------------------------
 -- Table structure for tb_queue_poli
@@ -355,7 +389,7 @@ CREATE TABLE `tb_queue_poli`  (
   INDEX `dr_id`(`dr_id`) USING BTREE,
   CONSTRAINT `tb_queue_poli_ibfk_1` FOREIGN KEY (`poli_id`) REFERENCES `tb_poli` (`poli_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `tb_queue_poli_ibfk_2` FOREIGN KEY (`dr_id`) REFERENCES `tb_dokter` (`dr_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tb_queue_poli
@@ -397,6 +431,36 @@ INSERT INTO `tb_queue_poli` VALUES (34, 10, '2022-08-31 21:11:57', 1, 'X', '006'
 INSERT INTO `tb_queue_poli` VALUES (35, 10, '2022-08-31 21:23:03', 1, 'X', '007', 6);
 INSERT INTO `tb_queue_poli` VALUES (36, 10, '2022-08-31 21:30:41', 1, 'X', '008', 6);
 INSERT INTO `tb_queue_poli` VALUES (37, 10, '2022-08-31 21:30:58', 1, 'X', '009', 6);
+INSERT INTO `tb_queue_poli` VALUES (38, 9, '2022-08-31 23:12:02', 1, 'W', '001', 2);
+INSERT INTO `tb_queue_poli` VALUES (39, 9, '2022-08-31 23:15:22', 1, 'W', '002', 2);
+INSERT INTO `tb_queue_poli` VALUES (40, 9, '2022-08-31 23:16:32', 1, 'W', '003', 2);
+INSERT INTO `tb_queue_poli` VALUES (41, 9, '2022-08-31 23:17:03', 1, 'W', '004', 2);
+INSERT INTO `tb_queue_poli` VALUES (42, 9, '2022-08-31 23:18:07', 1, 'W', '005', 2);
+INSERT INTO `tb_queue_poli` VALUES (43, 9, '2022-08-31 23:19:37', 1, 'W', '006', 5);
+INSERT INTO `tb_queue_poli` VALUES (44, 9, '2022-08-31 23:20:00', 1, 'W', '007', 5);
+INSERT INTO `tb_queue_poli` VALUES (45, 9, '2022-08-31 23:20:12', 1, 'W', '008', 5);
+INSERT INTO `tb_queue_poli` VALUES (46, 9, '2022-08-31 23:21:10', 1, 'W', '009', 5);
+INSERT INTO `tb_queue_poli` VALUES (47, 9, '2022-08-31 23:21:32', 1, 'W', '010', 5);
+INSERT INTO `tb_queue_poli` VALUES (48, 9, '2022-08-31 23:21:45', 1, 'W', '011', 5);
+INSERT INTO `tb_queue_poli` VALUES (49, 9, '2022-08-31 23:21:57', 1, 'W', '012', 5);
+INSERT INTO `tb_queue_poli` VALUES (50, 9, '2022-08-31 23:22:47', 1, 'W', '013', 5);
+INSERT INTO `tb_queue_poli` VALUES (51, 9, '2022-08-31 23:24:05', 1, 'W', '014', 5);
+INSERT INTO `tb_queue_poli` VALUES (52, 9, '2022-08-31 23:24:32', 1, 'W', '015', 5);
+INSERT INTO `tb_queue_poli` VALUES (53, 9, '2022-08-31 23:24:47', 1, 'W', '016', 5);
+
+-- ----------------------------
+-- Table structure for tb_radiologi
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_radiologi`;
+CREATE TABLE `tb_radiologi`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_radiologi
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_rumkit

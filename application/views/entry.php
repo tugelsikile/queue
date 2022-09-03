@@ -211,7 +211,7 @@
 </div><!-- /.modal -->
 <div class="masking"><i class="fa fa-spin fa-refresh"></i> </div>
 <div class="header">
-    <img src="<?php echo base_url('assets/img/logo.png');?>" width="250px">
+    <img src="<?php echo base_url('assets/img/logo.png');?>" height="100px">
     <div class="jam pull-right">
         <div class="clock">
             <div id="Date"></div>

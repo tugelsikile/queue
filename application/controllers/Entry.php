@@ -61,7 +61,6 @@ class Entry extends CI_Controller {
         $json['t']  = 0;
 	    $dr_id  = $this->input->post('dr_id');
         $data_dr    = $this->dbase->dataRow('dokter',array('dr_id'=>$dr_id));
-
         die(json_encode($json));
     }
 }

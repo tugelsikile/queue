@@ -1,9 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require FCPATH . '/vendor/autoload.php';
 
-class Home extends CI_Controller {
+class Home extends MY_Controller {
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	public function index(){
+    public function index(){
         if (!$this->session->userdata('queue')){
             redirect(site_url('account/login'));
         }
@@ -201,9 +206,24 @@ class Home extends CI_Controller {
 	            $json['t'] = 1;
 	            $json['kode'] = $data_que->que_kode.$data_que->que_kode2;
 	            $json['msg'] = 'Sukses';
+	            //$this->sendNotif(['id' => $call_id], 'panggilan-loket');
             }
         }
 	    die(json_encode($json));
+    }
+    public function sendNotif($data, $what){
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+        $pusher = new Pusher\Pusher(
+            '01d420271ac734b562b9',
+            '6819c84f5c8347216c0f',
+            '1472597',
+            $options
+        );
+        $data['message'] = $this->read_entry($data['id'])->speaker;
+        $pusher->trigger('puskesmas', $what, $data);
     }
     function show_antrian_poli(){
         $json['t'] = 0;
@@ -261,10 +281,11 @@ class Home extends CI_Controller {
             if (!$call_id){
                 $json['msg'] = 'Database error';
             } else {
-                //$this->dbase->dataUpdate('queue',array('que_id'=>$qpol_id),array('que_call'=>1));
+                $this->dbase->dataUpdate('queue',array('que_id'=>$qpol_id),array('que_call'=>1));
                 $json['t'] = 1;
                 $json['kode'] = $data_qpol->qpol_kode1.$data_qpol->qpol_kode2;
                 $json['msg'] = 'Sukses';
+                //$this->sendNotif(['id' => $call_id], 'panggilan-poli');
             }
         }
         die(json_encode($json));

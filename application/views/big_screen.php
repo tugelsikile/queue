@@ -164,11 +164,25 @@
             z-index: -1;
         }
     </style>
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+        var pusher = new Pusher('01d420271ac734b562b9', {
+            cluster: 'ap1'
+        });
+        var channel = pusher.subscribe('puskesmas');
+        channel.bind('panggilan-loket', function(data) {
+            console.log(data);
+            read_entry();
+            //alert(JSON.stringify(data));
+        });
+    </script>
 </head>
 <body>
 <div class="background"></div>
 <div class="header">
-    <img src="<?php echo base_url('assets/img/logo.png');?>" width="250px">
+    <img src="<?php echo base_url('assets/img/logo.png');?>" height="150px">
     <div class="jam pull-right">
         <div class="clock">
             <div id="Date"></div>
@@ -216,7 +230,7 @@
             responsiveVoice.setDefaultVoice("Indonesian Female");
             setInterval(function () {
                 read_entry();
-            },15000)
+            },10000)
         });
         read_entry();
     </script>

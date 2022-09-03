@@ -18,7 +18,7 @@ class Big_screen extends CI_Controller {
         $data['media'] = $this->dbase->dataResult('media',array('media_status'=>1));
         $this->load->view('big_screen_poli',$data);
     }
-	function read_entry(){
+	public function read_entry(){
         $json['t'] = 0;
         $data_call = $this->dbase->dataRow('calling',array('call_status'=>0,'DATE(call_date)'=>date('Y-m-d'),'que_id !='=>NULL),'*','call_date','ASC');
         if ($data_call){
