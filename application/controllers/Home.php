@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require FCPATH . '/vendor/autoload.php';
+date_default_timezone_set('Asia/Jakarta');
 
 class Home extends MY_Controller {
     public function __construct()
@@ -20,6 +21,17 @@ class Home extends MY_Controller {
             $this->load->view('dashboard',$data);
         }
 	}
+	function antrian_farmasi(){
+        if (!$this->session->userdata('queue')){
+            redirect(site_url('account/login'));
+        }
+        $data['body'] = 'antrian_farmasi';
+        if ($this->input->is_ajax_request()){
+            $this->load->view($data['body'],$data);
+        } else {
+            $this->load->view('dashboard',$data);
+        }
+    }
 	function antrian_loket(){
         if (!$this->session->userdata('queue')){
             redirect(site_url('account/login'));
@@ -158,6 +170,11 @@ class Home extends MY_Controller {
             $json['html'] = $this->load->view('show_antrian',$data,TRUE);
         }
         die(json_encode($json));
+    }
+    function load_antrian_farmasi(){
+        $json['t'] = 0;
+        $json['msg'] = 'Invalid data';
+        $data_antri = $this->dbase->dataResult('queue', ['']);
     }
     function load_antrian(){
 	    $json['t'] = 0;

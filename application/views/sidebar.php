@@ -23,6 +23,11 @@
                             <i class="fa fa-credit-card"></i> <span>Antrian Poli</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="javascript:;" uri="<?php echo site_url('home/antrian_farmasi');?>" onclick="load_page(this);return false">
+                            <i class="fa fa-credit-card"></i> <span>Antrian Farmasi</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="treeview">

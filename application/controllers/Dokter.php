@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Jakarta');
 class Dokter extends CI_Controller {
     function __construct(){
         parent::__construct();
@@ -21,7 +21,13 @@ class Dokter extends CI_Controller {
 	}
 	function admin_dokter(){
 	    $data['data'] = $this->dbase->dataResult('spesialis',array('spc_status'=>1));
-	    $this->load->view('admin/admin_dokter',$data);
+	    //$this->load->view('admin/admin_dokter',$data);
+        $data['body'] = 'admin/admin_dokter';
+        if ($this->input->is_ajax_request()){
+            $this->load->view($data['body'],$data);
+        } else {
+            $this->load->view('dashboard',$data);
+        }
     }
     function admin_dokter_data(){
 	    if (!$this->input->is_ajax_request()){
@@ -136,7 +142,13 @@ class Dokter extends CI_Controller {
             } else {
                 $data['data']   = $data_dr;
                 $data['user']   = $data_user;
-                $this->load->view('admin/admin_jadwal',$data);
+                $data['body'] = 'admin/admin_jadwal';
+                if ($this->input->is_ajax_request()){
+                    $this->load->view($data['body'],$data);
+                } else {
+                    $this->load->view('dashboard',$data);
+                }
+                //$this->load->view('admin/admin_jadwal',$data);
             }
         }
     }
@@ -379,7 +391,13 @@ class Dokter extends CI_Controller {
         die(json_encode($json));
     }
     function admin_spesialis(){
-        $this->load->view('admin/admin_spesialis');
+        $data['body'] = 'admin/admin_spesialis';
+        if ($this->input->is_ajax_request()){
+            $this->load->view($data['body'],$data);
+        } else {
+            $this->load->view('dashboard',$data);
+        }
+        //$this->load->view('admin/admin_spesialis');
     }
     function admin_spesialis_data(){
         $json['t'] = 0;

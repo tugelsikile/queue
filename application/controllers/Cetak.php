@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Jakarta');
 require_once FCPATH . '/vendor/autoload.php';
 
 use chillerlan\QRCode\QRCode;
@@ -92,14 +92,14 @@ class Cetak extends CI_Controller {
                                 file_put_contents($path, $generator->getBarcode($kode_poli_lengkap, $generator::TYPE_CODE_128_A));
 
                                 //struk pendaftaran
-                                $tux = EscposImage::load(FCPATH . 'assets/img/logo-small.png', false);
+                                //$tux = EscposImage::load(FCPATH . 'assets/img/logo-small.png', false);
                                 $barcode = EscposImage::load($path);
                                 $printer -> setJustification(Printer::JUSTIFY_CENTER);
-                                $printer -> bitImage($tux);
-                                $printer -> text("____________________");
-                                $printer -> feed();
+                                //$printer -> bitImage($tux);
+                                //$printer -> text("____________________");
+                                $printer -> feed(2);
                                 $printer -> text("Nomor Antrian :");
-                                $printer -> feed();
+                                $printer -> feed(1);
                                 $printer -> setTextSize(8, 8);
                                 $printer -> text($kode_lengkap);
                                 $printer -> feed(2);
@@ -110,14 +110,15 @@ class Cetak extends CI_Controller {
                                 $printer -> text($data_loket->loket_name."\n");
                                 $printer -> text($this->conv->hariIndo(date('N')).", ".$this->conv->tglIndo(date('Y-m-d')));
                                 $printer -> feed(2);
-                                $printer -> text("\n>--------------------->\n");
+                                //$printer -> text("\n>--------------------->\n");
+                                $printer -> cut();
 
                                 //struk poli
-                                $tux = EscposImage::load(FCPATH . 'assets/img/logo-small.png', false);
+                                //$tux = EscposImage::load(FCPATH . 'assets/img/logo-small.png', false);
                                 $printer -> setJustification(Printer::JUSTIFY_CENTER);
-                                $printer -> bitImage($tux);
-                                $printer -> text("\n____________________\n");
-                                $printer -> feed();
+                                //$printer -> bitImage($tux);
+                                //$printer -> text("\n____________________\n");
+                                $printer -> feed(2);
                                 $printer -> text("Nomor Antrian Poli :");
                                 $printer -> feed();
                                 $printer -> setTextSize(8, 8);

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Jakarta');
 class Admin extends CI_Controller {
 
 	public function index(){
@@ -17,7 +17,13 @@ class Admin extends CI_Controller {
         }
 	}
 	function admin_loket(){
-	    $this->load->view('admin/admin_loket');
+	    $data['body'] = 'admin/admin_loket';
+        if ($this->input->is_ajax_request()){
+            $this->load->view($data['body'],$data);
+        } else {
+            $this->load->view('dashboard',$data);
+        }
+	    //$this->load->view('admin/admin_loket');
     }
     function admin_loket_data(){
 	    $json['t'] = 0;
@@ -196,7 +202,13 @@ class Admin extends CI_Controller {
         die(json_encode($json));
     }
     function admin_poli(){
-        $this->load->view('admin/admin_poli');
+        $data['body'] = 'admin/admin_poli';
+        if ($this->input->is_ajax_request()){
+            $this->load->view($data['body'],$data);
+        } else {
+            $this->load->view('dashboard',$data);
+        }
+        //$this->load->view('admin/admin_poli');
     }
     function admin_poli_data(){
         $json['t'] = 0;
@@ -441,7 +453,13 @@ class Admin extends CI_Controller {
         die(json_encode($json));
     }
     function admin_user(){
-        $this->load->view('admin/admin_user');
+	    $data['body'] = 'admin/admin_user';
+        if ($this->input->is_ajax_request()){
+            $this->load->view($data['body'],$data);
+        } else {
+            $this->load->view('dashboard',$data);
+        }
+        //$this->load->view('admin/admin_user');
     }
     function admin_user_data(){
         $json['t'] = 0;
@@ -560,7 +578,13 @@ class Admin extends CI_Controller {
         die(json_encode($json));
     }
     function runing_text(){
-	    $this->load->view('admin/runing_text');
+        $data['body'] = 'admin/runing_text';
+        if ($this->input->is_ajax_request()){
+            $this->load->view($data['body'],$data);
+        } else {
+            $this->load->view('dashboard',$data);
+        }
+	    //$this->load->view('admin/runing_text');
     }
     function admin_runing_text_data(){
 	    $json['t'] = 0;
@@ -653,7 +677,13 @@ class Admin extends CI_Controller {
         die(json_encode($json));
     }
     function video(){
-	    $this->load->view('admin/admin_video');
+        $data['body'] = 'admin/admin_video';
+        if ($this->input->is_ajax_request()){
+            $this->load->view($data['body'],$data);
+        } else {
+            $this->load->view('dashboard',$data);
+        }
+	    //$this->load->view('admin/admin_video');
     }
     function admin_video_data(){
         $json['t'] = 0;
@@ -713,9 +743,16 @@ class Admin extends CI_Controller {
         die(json_encode($json));
     }
     public function printer(){
-	    $data = $this->dbase->dataRow('printer');
+	    $printer = $this->dbase->dataRow('printer');
 	    //die(var_dump($data));
-	    $this->load->view('admin/printer', ['data' => $data]);
+	    //$this->load->view('admin/printer', ['data' => $data]);
+        $data['data'] = $printer;
+        $data['body'] = 'admin/printer';
+        if ($this->input->is_ajax_request()){
+            $this->load->view($data['body'],$data);
+        } else {
+            $this->load->view('dashboard',$data);
+        }
     }
     public function printer_save() {
 	    $json['t'] = 0;
@@ -733,6 +770,143 @@ class Admin extends CI_Controller {
         } else {
             $json['t'] = 1;
             $json['msg'] = '<strong>Printer</strong> berhasil disimpan';
+        }
+        die(json_encode($json));
+    }
+    function schedule_poli() {
+        $data = $this->dbase->dataRow('poli',['poli_id' => $this->uri->segment(3)]);
+        $this->load->view('admin/admin_poli_schedule', ['data' => $data], false);
+    }
+    function schedule_poli_data(){
+	    $json['t'] = 1;
+	    $json['msg'] = 'ok';
+	    $schedules = $this->dbase->dataResult('poli_schedule', ['poli_id' => $this->input->post('poli_id')]);
+	    $response = [];
+	    foreach ($schedules as $index => $schedule) {
+	        $response[$index] = $schedule;
+	        $response[$index]->poli = $this->dbase->dataRow('poli', ['poli_id' => $schedule->poli_id]);
+        }
+	    $this->load->library('conv');
+	    $json['html'] = $this->load->view('admin/admin_poli_schedule_data', ['data' => $response], true);
+	    die(json_encode($json));
+    }
+    function schedule_poli_add(){
+	    if (strtolower($this->input->method()) == 'get') {
+	        $this->load->view('admin/form/admin_poli_schedule_add', ['data' => $this->dbase->dataRow('poli', ['poli_id' => $this->uri->segment(3)]) ]);
+        } else {
+	        $json['t'] = 0;
+	        $json['msg'] = 'error';
+	        if (strlen($this->input->post('poli')) == 0) {
+	            $json['msg'] = 'Pilih poli lebih dulu';
+            } elseif ($this->dbase->dataRow('poli',['poli_id' => $this->input->post('poli')]) == null){
+	            $json['msg'] = 'Poli yang dipilih tidak valid';
+            } elseif (strlen($this->input->post('hari')) == 0) {
+	            $json['msg'] = 'Pilih hari lebih dulu';
+            } elseif ($this->input->post('hari') < 1 || $this->input->post('hari') > 7) {
+                $json['msg'] = 'Hari yang dipilih tidak valid';
+            } elseif (count($this->dbase->dataResult('poli_schedule', ['poli_id' => $this->input->post('poli'), 'hari' => $this->input->post('hari')])) > 0) {
+	            $this->load->library('conv');
+	            $json['msg'] = 'Jadwal hari '. $this->conv->hariIndo($this->input->post('hari')) .' sudah ada';
+            } elseif (strlen($this->input->post('jam_buka')) != 5) {
+                $json['msg'] = 'Format <b>jam buka</b> tidak valid. gunakan format <b>JJ:MM</b>';
+            } elseif (count(explode(':', $this->input->post('jam_buka'))) != 2) {
+                $json['msg'] = 'Format <b>jam buka</b> tidak valid. gunakan format <b>JJ:MM</b>';
+            } elseif ((int) explode(':', $this->input->post('jam_buka'))[0] > 23) {
+	            $json['msg'] = '<b>Jam buka</b> tidak valid. (max 23)';
+            } elseif ((int) explode(':', $this->input->post('jam_buka'))[1] > 59) {
+	            $json['msg'] = '<b>Menit</b> jam buka tidak valid. (max 59)';
+            }  elseif (strlen($this->input->post('jam_tutup')) != 5) {
+                $json['msg'] = 'Format <b>jam tutup</b> tidak valid. gunakan format <b>JJ:MM</b>';
+            } elseif (count(explode(':', $this->input->post('jam_tutup'))) != 2) {
+                $json['msg'] = 'Format <b>jam tutup</b> tidak valid. gunakan format <b>JJ:MM</b>';
+            } elseif ((int) explode(':', $this->input->post('jam_tutup'))[0] > 23) {
+                $json['msg'] = '<b>Jam tutup</b> tidak valid. (max 23)';
+            } elseif ((int) explode(':', $this->input->post('jam_tutup'))[1] > 59) {
+                $json['msg'] = '<b>Menit</b> jam tutup tidak valid. (max 59)';
+            } else {
+	            $insert = $this->dbase->dataInsert('poli_schedule',
+                    [
+                        'poli_id' => $this->input->post('poli'),
+                        'hari' => (int) $this->input->post('hari'),
+                        'open' => $this->input->post('jam_buka'),
+                        'close' => $this->input->post('jam_tutup'),
+                        'quota' => (int) $this->input->post('quota')
+                    ]);
+	            $json['t'] = 1;
+	            $json['msg'] = 'Jadwal poli berhasil ditambahkan';
+            }
+	        die(json_encode($json));
+        }
+    }
+    function schedule_poli_edit(){
+        if (strtolower($this->input->method()) == 'get') {
+            $this->load->view('admin/form/admin_poli_schedule_edit', ['poli' => $this->dbase->dataResult('poli'), 'data' => $this->dbase->dataRow('poli_schedule', ['id' => $this->uri->segment(3)]) ]);
+        } else {
+            $json['t'] = 0;
+            $json['msg'] = 'error';
+            if (strlen($this->input->post('id')) == 0) {
+                $json['msg'] = 'Data jadwal tidak valid';
+            } elseif ($this->dbase->dataRow('poli_schedule', ['id' => $this->input->post('id')]) == null) {
+                $json['msg'] = 'Data jadwal tidak valid';
+            } elseif (strlen($this->input->post('poli')) == 0) {
+                $json['msg'] = 'Pilih poli lebih dulu';
+            } elseif ($this->dbase->dataRow('poli',['poli_id' => $this->input->post('poli')]) == null){
+                $json['msg'] = 'Poli yang dipilih tidak valid';
+            } elseif (strlen($this->input->post('hari')) == 0) {
+                $json['msg'] = 'Pilih hari lebih dulu';
+            } elseif ($this->input->post('hari') < 1 || $this->input->post('hari') > 7) {
+                $json['msg'] = 'Hari yang dipilih tidak valid';
+            } elseif (count($this->dbase->dataResult('poli_schedule', ['poli_id' => $this->input->post('poli'), 'hari' => $this->input->post('hari'), 'id !=' => $this->input->post('id')])) > 0) {
+                $this->load->library('conv');
+                $json['msg'] = 'Jadwal hari '. $this->conv->hariIndo($this->input->post('hari')) .' sudah ada';
+            } elseif (strlen($this->input->post('jam_buka')) != 5) {
+                $json['msg'] = 'Format <b>jam buka</b> tidak valid. gunakan format <b>JJ:MM</b>';
+            } elseif (count(explode(':', $this->input->post('jam_buka'))) != 2) {
+                $json['msg'] = 'Format <b>jam buka</b> tidak valid. gunakan format <b>JJ:MM</b>';
+            } elseif ((int) explode(':', $this->input->post('jam_buka'))[0] > 23) {
+                $json['msg'] = '<b>Jam buka</b> tidak valid. (max 23)';
+            } elseif ((int) explode(':', $this->input->post('jam_buka'))[1] > 59) {
+                $json['msg'] = '<b>Menit</b> jam buka tidak valid. (max 59)';
+            }  elseif (strlen($this->input->post('jam_tutup')) != 5) {
+                $json['msg'] = 'Format <b>jam tutup</b> tidak valid. gunakan format <b>JJ:MM</b>';
+            } elseif (count(explode(':', $this->input->post('jam_tutup'))) != 2) {
+                $json['msg'] = 'Format <b>jam tutup</b> tidak valid. gunakan format <b>JJ:MM</b>';
+            } elseif ((int) explode(':', $this->input->post('jam_tutup'))[0] > 23) {
+                $json['msg'] = '<b>Jam tutup</b> tidak valid. (max 23)';
+            } elseif ((int) explode(':', $this->input->post('jam_tutup'))[1] > 59) {
+                $json['msg'] = '<b>Menit</b> jam tutup tidak valid. (max 59)';
+            } else {
+                $insert = $this->dbase->dataUpdate('poli_schedule', ['id' => $this->input->post('id')],
+                    [
+                        'poli_id' => $this->input->post('poli'),
+                        'hari' => (int) $this->input->post('hari'),
+                        'open' => $this->input->post('jam_buka'),
+                        'close' => $this->input->post('jam_tutup'),
+                        'quota' => (int) $this->input->post('quota')
+                    ]);
+                $json['t'] = 1;
+                $json['msg'] = 'Jadwal poli berhasil diubah';
+            }
+            die(json_encode($json));
+        }
+    }
+    function schedule_poli_delete() {
+        if (strtolower($this->input->method()) == 'get') {
+            $this->load->library('conv');
+            $this->load->view('admin/form/admin_poli_schedule_delete', ['data' => $this->dbase->dataRow('poli_schedule', ['id' => $this->uri->segment(3)]) ]);
+        } else {
+            $json['t'] = 0;
+            $json['msg'] = 'Error';
+            if (strlen($this->input->post('id')) == 0) {
+                $json['msg'] = 'Data jadwal tidak valid';
+            } elseif ($this->dbase->dataRow('poli_schedule',['id' => $this->input->post('id')]) == null) {
+                $json['msg'] = 'Data jadwal tidak valid';
+            } else {
+                $this->dbase->dataDelete('poli_schedule', ['id' => $this->input->post('id')]);
+                $json['t'] = 1;
+                $json['msg'] = 'Jadwal berhasil dihapus';
+            }
+            die(json_encode($json));
         }
     }
 }

@@ -9,6 +9,7 @@ if (!$data){
             <td><?php echo $val->poli_name;?></td>
             <td><?php echo $val->loket_name;?></td>
             <td>
+                <a uri="<?= site_url('admin/schedule_poli/' . $val->poli_id) ?>" title="Jadwal Poli" href="<?= site_url('admin/schedule_poli/' . $val->poli_id) ?>" onclick="load_page(this); return false" class="btn btn-primary btn-sm"><i class="fa fa-calendar"></i> Jadwal</a>
                 <a title="Rubah data" href="<?php echo site_url('admin/edit_poli/'.$val->poli_id);?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> Rubah</a>
                 <a title="Hapus data" href="<?php echo site_url('admin/delete_poli/'.$val->poli_id);?>" onclick="konfirmasi(this);return false" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a>
             </td>

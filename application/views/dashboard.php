@@ -39,12 +39,19 @@
         var site_url    = '<?php echo site_url();?>';
         //responsiveVoice.setDefaultVoice("Indonesian Female");
         function load_page(ob) {
+            showLoadingPage();
             var url     = $(ob).attr('uri');
-            $('.content-wrapper').load(url);
+            $('.content-wrapper').load(url, (a,b,c)=>{
+                console.log(c);
+                if (c.status !== 200) {
+                    alert('error');
+                }
+                hideLoadingPage();
+            });
             $('.sidebar-menu .active').removeClass('active');
             $(ob).parents('li').addClass('active');
-            //window.history.pushState({},document.title,url);
-            //window.history.replaceState({},document.title,url);
+            window.history.pushState({},document.title,url);
+            window.history.replaceState({},document.title,url);
         }
         //responsiveVoice.speak("selamat pagi dan siang");
         function show_modal(ob) {
@@ -66,6 +73,12 @@
             var url = $(ob).attr('href');
             $('#modalConfirm .modal-body').html('<i class="fa fa-spin fa-refresh"></i> Loading ...').load(url);
             $('#modalConfirm').modal('show');
+        }
+        function showLoadingPage() {
+            $('#modal-progress').modal('show');
+        }
+        function hideLoadingPage() {
+            $('#modal-progress').modal('hide');
         }
     </script>
     <!-- Google Font -->
@@ -125,6 +138,15 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div id="modal-progress" class="modal fade" tabindex="-3" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content text-center">
+            <i class="fa fa-circle-o-notch fa-spin"></i><br>
+            LOADING ...
+        </div>
+    </div>
+</div>
+
 <div class="wrapper">
 
 
@@ -148,7 +170,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.0
         </div>
-        <strong>Copyright &copy; 2014-<?php echo date('Y');?> <a target="_blank" href="https://smkmuhkandanghaur.sch.id">SMK Muhammadiyah Kandanghaur</a>.</strong> All rights
+        <strong>Copyright &copy; 2014-<?php echo date('Y');?> <a target="_blank" href="https://rst.net.id">PT. Smart Teknologi Utama</a>.</strong> All rights
         reserved.
     </footer>
 

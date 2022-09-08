@@ -1,11 +1,15 @@
-<section class="content-header">
-</section>
+<section class="content-header"></section>
 
-<!-- Main content -->
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title repeat-flag">Poli</h3>
+            <h3 class="box-title repeat-flag">
+                <i class="fa fa-calendar"></i>
+                Jadwal Poli :
+                <a href="javascript:;" uri="<?= site_url('admin/admin_poli') ?>" onclick="load_page(this);return false">
+                    <?= $data->poli_name ?>
+                </a>
+            </h3>
 
             <div class="box-tools pull-right" >
                 <div class="pull-right input-group-sm input-group" style="width: 150px">
@@ -14,8 +18,8 @@
                         <button type="submit" onclick="load_data()" class="btn-cari btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-                <a title="Tambah Poli" href="<?php echo site_url('admin/add_poli');?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
-                    <i class="fa fa-plus"></i> Tambah Poli
+                <a title="Tambah Jadwal" href="<?php echo site_url('admin/schedule_poli_add/'.$data->poli_id);?>" onclick="show_modal(this);return false" class="btn btn-sm btn-primary mr-5" style="margin-right: 5px">
+                    <i class="fa fa-plus"></i> Tambah Jadwal
                 </a>
             </div>
         </div>
@@ -23,9 +27,10 @@
             <table class="table table-bordered table-hover table-data">
                 <thead>
                 <tr>
-                    <th width="100px">Kode Poli</th>
-                    <th width="200px">Nama Poli</th>
-                    <th width="*">Nama Loket</th>
+                    <th width="*">Hari</th>
+                    <th width="200px">Jam Mulai</th>
+                    <th width="200px">Jam Selesai</th>
+                    <th width="200px">Quota</th>
                     <th width="200px"></th>
                 </tr>
                 </thead>
@@ -47,13 +52,13 @@
         //$('.table-data tbody').html('<tr class="row_0"><td colspan="4" align="center"><i class="fa fa-spin fa-refresh"></i> Loading ... </td></tr>');
         $('.btn-cari').html('<i class="fa fa-spin fa-refresh"></i>');
         var keyword     = $('#table_search').val();
-        var loket_id    = $('.loket_id').val();
+        var dr_id       = '<?php echo $data->poli_id;?>';
         $.ajax({
-            //url     : base_url + 'admin/admin_poli_data',
-            url     : '<?= site_url() ?>/admin/admin_poli_data',
+            //url     : base_url + 'dokter/admin_jadwal_data',
+            url     : '<?= site_url()?>/admin/schedule_poli_data',
             type    : 'POST',
             dataType: 'JSON',
-            data    : { keyword:keyword},
+            data    : { keyword:keyword, poli_id:dr_id },
             success : function (dt) {
                 if (dt.t == 0){
                     $('.btn-cari').html('<i class="fa fa-search"></i>');
