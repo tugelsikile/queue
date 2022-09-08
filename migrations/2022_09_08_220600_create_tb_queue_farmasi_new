@@ -1,0 +1,8 @@
+CREATE TABLE `tb_queue_farmasi_new`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `tanggal` date NULL,
+  `number` bigint UNSIGNED NULL,
+  `call_at` datetime NULL,
+  `created_at` datetime NULL,
+  PRIMARY KEY (`id`)
+);

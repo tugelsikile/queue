@@ -1,13 +1,5 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-<!--    <h1>-->
-<!--        Dashboard-->
-<!--        <small>Control panel</small>-->
-<!--    </h1>-->
-<!--    <ol class="breadcrumb">-->
-<!--        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
-<!--        <li class="active">Dashboard</li>-->
-<!--    </ol>-->
 </section>
 
 <!-- Main content -->
@@ -88,7 +80,7 @@
         var que_id  = $(ob).attr('que');
         if (que_id.length > 0){
             $.ajax({
-                url     : '<?= site_url()?>/home/insert_call',
+                url     : '<?= site_url()?>/home/insert_call_poli',
                 type    : 'POST',
                 dataType: 'JSON',
                 data    : { que_id:que_id},

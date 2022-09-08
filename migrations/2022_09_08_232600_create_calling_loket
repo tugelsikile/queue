@@ -1,0 +1,9 @@
+CREATE TABLE `tb_calling_loket`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `queue_id` bigint UNSIGNED NOT NULL,
+  `call_at` datetime NULL ON UPDATE CURRENT_TIMESTAMP,
+  `hari` date NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `calling_queue_queue_id_foreign` FOREIGN KEY (`queue_id`) REFERENCES `tb_queue_new` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+);

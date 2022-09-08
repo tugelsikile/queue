@@ -2,24 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5fedd6a-4c0e-47f1-82df-1df2a3002528" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/application/views/admin/admin_poli_schedule.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/admin/admin_poli_schedule_data.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/admin/form/admin_poli_schedule_add.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/admin/form/admin_poli_schedule_delete.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/admin/form/admin_poli_schedule_edit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/antrian_farmasi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/views/big_screen_farmasi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/views/load_antrian_farmasi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/2022_09_08_210400_create_tb_queue_poli_new" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/2022_09_08_215900_create_tb_queue_new" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/2022_09_08_220600_create_tb_queue_farmasi_new" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/2022_09_08_230500_create_poli_schedule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/2022_09_08_232600_create_calling_loket" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/2022_09_08_235400_create_calling_poli" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/2022_09_08_235500_create_calling_farmasi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ANTRIAN.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ANTRIAN.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Big_screen.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Big_screen.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Cetak.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Cetak.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Dokter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Dokter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Entry.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Entry.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_poli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/admin_poli_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/admin_poli_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/admin/form/admin_poli_schedule_add.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/admin_poli_schedule_add.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/admin/form/admin_poli_schedule_edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/form/admin_poli_schedule_edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/antrian_farmasi.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/antrian_farmasi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/antrian_loket.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/antrian_loket.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/antrian_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/antrian_poli.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/entry.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/entry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/entry/show_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/entry/show_poli.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/load_antrian.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/load_antrian.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/load_antrian_poli.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/load_antrian_poli.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +71,11 @@
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
     </include_path>
   </component>
   <component name="ProjectId" id="2E7VMAa6lmOnMHBtJHfUeyYftMn" />
@@ -78,15 +93,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\queue\application\views\admin\form" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\queue\application\views" />
+      <recent name="C:\xampp\htdocs\queue\migrations" />
+      <recent name="C:\xampp\htdocs\queue\assets\img" />
       <recent name="C:\xampp\htdocs\queue\application\views\admin\form" />
       <recent name="C:\xampp\htdocs\queue\assets\video" />
-      <recent name="C:\xampp\htdocs\queue\assets\img" />
-      <recent name="C:\xampp\htdocs\queue\assets\barcode" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\queue\application\views\admin\form" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -143,6 +158,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="418" y="175" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1662656121989">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="418" y="175" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1662656121989" />
     <state x="740" y="272" key="FileChooserDialogImpl" timestamp="1661953955666">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>

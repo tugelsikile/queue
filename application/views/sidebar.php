@@ -54,6 +54,11 @@
                             <i class="fa fa-rocket"></i> <span>Tampilan Antrian Poli</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo site_url('big_screen/farmasi');?>" target="_blank" >
+                            <i class="fa fa-rocket"></i> <span>Tampilan Antrian Farmasi</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 <?php if ($this->session->userdata('user_level') == 99){ ?>

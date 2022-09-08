@@ -11,7 +11,7 @@
         <label for="hari_name" class="control-label col-md-3">Hari</label>
         <div class="col-md-9">
             <select name="hari" class="form-control" id="hari_name">
-                <option <?= $data->hari == 7 ? 'selected' : null ?> value="7">Minggu</option>
+                <option <?= $data->hari == 0 ? 'selected' : null ?> value="0">Minggu</option>
                 <option <?= $data->hari == 1 ? 'selected' : null ?> value="1">Senin</option>
                 <option <?= $data->hari == 2 ? 'selected' : null ?> value="2">Selasa</option>
                 <option <?= $data->hari == 3 ? 'selected' : null ?> value="3">Rabu</option>

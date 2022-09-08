@@ -1,0 +1,13 @@
+CREATE TABLE `tb_queue_new`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `poli_id` bigint UNSIGNED NOT NULL,
+  `loket_id` bigint UNSIGNED NULL,
+  `tanggal` date NULL,
+  `number` bigint UNSIGNED NOT NULL,
+  `call_at` datetime NULL,
+  `created_at` datetime NOT NULL,
+  `finish_at` datetime NULL
+  PRIMARY KEY (`id`),
+  CONSTRAINT `poli_id_poli_foreign` FOREIGN KEY (`poli_id`) REFERENCES `tb_poli` (`poli_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `loket_id_loket_foreign` FOREIGN KEY (`loket_id`) REFERENCES `tb_loket` (`loket_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+);

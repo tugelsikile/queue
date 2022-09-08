@@ -8,7 +8,8 @@ class Entry extends CI_Controller {
     }
 
     public function index(){
-	    $this->load->view('entry');
+        $polies = $this->dbase->dataResult('poli', ['poli_status' => 1]);
+	    $this->load->view('entry', ['polies' => $polies]);
 	}
 	function show_poli(){
         $data['poli']   = $this->dbase->dataResult('poli',array('poli_status'=>1));
@@ -37,7 +38,7 @@ class Entry extends CI_Controller {
                 $data_dokt[$i]->antri = count($antrian);
                 $data_dokt[$i]->jam     = 0;
                 $sql = "SELECT djad_id,djad_time_start,djad_time_end,djad_day  FROM  tb_dokter_jadwal
-                        WHERE ( CAST('".date('H:i:s')."' AS time ) BETWEEN djad_time_antri AND djad_time_end ) AND 
+                        WHERE ( CAST('".date('H:i:s')."' AS time ) BETWEEN djad_time_antri AND djad_time_end ) AND
                         dr_id = '".$val->dr_id."' AND djad_day = '".$day_now."' AND djad_status = 1 ";
                 //$jadwal     = $this->dbase->dataRow('dokter_jadwal',array('dr_id'=>$val->dr_id,'djad_time_start <'=>date('H:i:s'),'djad_time_end >'=>date('H:i:s')));
                 $jadwal = $this->dbase->sqlRow($sql);

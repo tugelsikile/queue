@@ -209,7 +209,9 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
 <div class="masking"><i class="fa fa-spin fa-refresh"></i> </div>
+
 <div class="header">
     <img src="<?php echo base_url('assets/img/logo.png');?>" height="100px">
     <div class="jam pull-right">
@@ -225,61 +227,45 @@
         </div>
     </div>
 </div>
+
 <div class="iframe" style="display: none">
     <iframe name="printing" id="printing" src="" width="100%"></iframe>
 </div>
 <div class="content">
+    <div style="position:fixed;top:auto;bottom:auto;left:100px">
+        <img style="-webkit-transform: scaleX(-1); transform: scaleX(-1);" src="<?= base_url('assets/img/undraw_going_up_re_86kg.svg') ?>" width="50%">
+    </div>
+    <div class="col-md-4">
 
-
-
-
-
+    </div>
+    <div class="col-md-8">
+        <?php $this->load->view('entry/show_poli'); ?>
+    </div>
 </div>
 <script>
     var window_height = $(window).height();
     $('.masking').css({'line-height':window_height+'px'}).hide();
-
     function show_poli() {
         $('.masking').show();
         $('.content').load(site_url+'/entry/show_poli',function (e) {
             $('.masking').hide();
         });
     }
-    show_poli();
-    function show_dokter(ob) {
-        var poli_id = $(ob).attr('poli');
+    //show_poli();
+    function insert_queue_loket(ob) {
+        var poli_id   = $(ob).attr('data-poli');
         $('.masking').show();
         $.ajax({
-            url     : '<?= site_url()?>/entry/show_dokter',
-            data    : { poli_id:poli_id },
+            url     : '<?= site_url()?>/cetak/insert_queue_loket',
             type    : 'POST',
             dataType: 'JSON',
+            data    : { poli_id : poli_id },
             success : function (dt) {
-                if(dt.t == 0){
-                    $('.masking').hide();
-                    $('.content').html(dt.msg);
-                } else {
-                    $('.masking').hide();
-                    $('.content').html(dt.html);
-                }
-            }
-        })
-    }
-    function insert_queue(ob) {
-        var dr_id   = $(ob).attr('data-id');
-        $('.masking').show();
-        $.ajax({
-            url     : '<?= site_url()?>/cetak/insert_queue',
-            type    : 'POST',
-            dataType: 'JSON',
-            data    : { dr_id:dr_id },
-            success : function (dt) {
-                if (dt.t == 0){
+                if (dt.t === 0){
                     $('.masking').hide();
                     alert(dt.msg);
                 } else {
                     $('.masking').hide();
-                    show_poli();
                 }
             }
         });

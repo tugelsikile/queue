@@ -89,10 +89,10 @@ class Home extends MY_Controller {
                     WHERE   (
                               qu.que_kode LIKE '%".$keyword."%' OR
                               po.poli_name LIKE '%".$keyword."%' OR
-                              lo.loket_name LIKE '%".$keyword."%' 
-                            ) AND DATE(qu.que_date) = '".date('Y-m-d')."' ".$sql_loket." 
+                              lo.loket_name LIKE '%".$keyword."%'
+                            ) AND DATE(qu.que_date) = '".date('Y-m-d')."' ".$sql_loket."
                     GROUP BY qu.que_id
-                    ORDER BY ca.call_status,qu.que_kode ASC 
+                    ORDER BY ca.call_status,qu.que_kode ASC
                     ";
                     //ORDER BY qu.que_call ASC ";
             //die(var_dump($sql));
@@ -107,6 +107,25 @@ class Home extends MY_Controller {
             }
         }
 	    die(json_encode($json));
+    }
+    function insert_call_poli(){
+        $json['t']  = 0;
+        if ($this->session->userdata('queue')){
+            $user_id    = $this->session->userdata('user_id');
+            $que_id     = $this->input->post('que_id');
+            $dataQue    = $this->dbase->dataRow('queue',array('que_id'=>$que_id));
+            if ($que_id && $dataQue){
+                $arr = array(
+                    'que_id' => $que_id, 'user_id' => $user_id
+                );
+                $call_id    = $this->dbase->dataInsert('calling',$arr);
+                if ($call_id){
+                    $this->dbase->dataUpdate('queue',array('que_id'=>$que_id),array('que_call'=>99));
+                    $json['t'] = 1;
+                }
+            }
+        }
+        die(json_encode($json));
     }
     function insert_call(){
 	    $json['t']  = 0;
@@ -174,30 +193,31 @@ class Home extends MY_Controller {
     function load_antrian_farmasi(){
         $json['t'] = 0;
         $json['msg'] = 'Invalid data';
-        $data_antri = $this->dbase->dataResult('queue', ['']);
+        $data_antri = $this->dbase->dataResult('queue_farmasi_new', ['tanggal' => Carbon\Carbon::now()->format('Y-m-d')], false,'created_at', 'asc');
+        if (!$data_antri) {
+            $json['msg'] = 'Tidak ada data antrian';
+        } else {
+            $json['t'] = 1;
+            $data['data'] = $data_antri;
+            $json['html'] = $this->load->view('load_antrian_farmasi', $data, true );
+        }
+        die(json_encode($json));
     }
     function load_antrian(){
 	    $json['t'] = 0;
 	    $json['msg'] = 'Invalid data';
 	    $loket_id = $this->input->post('loket_id');
-	    $data_loket = $this->dbase->dataRow('loket',array('loket_id'=>$loket_id));
+	    $data_loket = $this->dbase->dataRow('loket',[ 'loket_id'=>$loket_id]);
 	    if (!$loket_id || !$data_loket){
 	        $json['msg'] = 'Invalid data loket';
         } else {
-	        $data_antri = $this->dbase->dataResult('queue',array('que_status'=>1,'loket_id'=>$loket_id,'DATE(que_date)'=>date('Y-m-d')));
+	        $today = \Carbon\Carbon::now();
+	        $data_antri = $this->dbase->dataResult('queue_new',[  'tanggal' => $today->format('Y-m-d') ], false, 'number', 'asc');
+	        //$data_antri = $this->dbase->dataResult('queue_new',array('que_status'=>1,'loket_id'=>$loket_id,'DATE(que_date)'=>date('Y-m-d')));
 	        if (!$data_antri){
 	            $json['msg'] = 'Tidak ada antrian';
             } else {
 	            $i = 0;
-	            foreach ($data_antri as $value){
-	                $data_antri[$i] = $value;
-	                $data_antri[$i]->is_called = 0;
-	                $call = $this->dbase->dataRow('calling',array('que_id'=>$value->que_id));
-	                if ($call){
-	                    $data_antri[$i]->is_called = 1;
-                    }
-	                $i++;
-                }
 	            $json['t'] = 1;
 	            $data['loket'] = $data_loket;
 	            $data['data'] = $data_antri;
@@ -206,22 +226,69 @@ class Home extends MY_Controller {
         }
         die(json_encode($json));
     }
+    function call_antri_poli(){
+        $json['t'] = 0;
+        $json['msg'] = 'Invalid data';
+        $que_id = $this->input->post('que_id');
+        $data_que = $this->dbase->dataRow('queue_poli_new',array('id'=>$que_id));
+        if (!$que_id || !$data_que){
+            $json['msg'] = 'Invalid data antri';
+        } else {
+            //$ar_call = array('que_id'=>$que_id,'user_id'=>$this->session->userdata('user_id'),'call_date'=>date('Y-m-d H:i:s'));
+            //$call_id = $this->dbase->dataInsert('calling',$ar_call);
+            $call_id = $this->dbase->dataInsert('calling_poli', ['queue_id' => $que_id, 'hari' => \Carbon\Carbon::now()->format('Y-m-d')]);
+            if (!$call_id){
+                $json['msg'] = 'Database error';
+            } else {
+                $this->dbase->dataUpdate('queue_poli_new',array('id'=>$que_id),array('call_at'=> \Carbon\Carbon::now()->format('Y-m-d H:i:s')));
+                $json['t'] = 1;
+                $json['kode'] = str_pad($data_que->number,3,'0',STR_PAD_LEFT);
+                $json['msg'] = 'Sukses';
+                //$this->sendNotif(['id' => $call_id], 'panggilan-loket');
+            }
+        }
+        die(json_encode($json));
+    }
+    function call_antri_farmasi(){
+        $json['t'] = 0;
+        $json['msg'] = 'Invalid data';
+        $que_id = $this->input->post('que_id');
+        $data_que = $this->dbase->dataRow('queue_farmasi_new',array('id'=>$que_id));
+        if (!$que_id || !$data_que){
+            $json['msg'] = 'Invalid data antri';
+        } else {
+            //$ar_call = array('que_id'=>$que_id,'user_id'=>$this->session->userdata('user_id'),'call_date'=>date('Y-m-d H:i:s'));
+            //$call_id = $this->dbase->dataInsert('calling',$ar_call);
+            $call_id = $this->dbase->dataInsert('calling_farmasi', ['queue_id' => $que_id, 'hari' => \Carbon\Carbon::now()->format('Y-m-d'), 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
+            if (!$call_id){
+                $json['msg'] = 'Database error';
+            } else {
+                $this->dbase->dataUpdate('queue_farmasi_new',array('id'=>$que_id),array('call_at'=> \Carbon\Carbon::now()->format('Y-m-d H:i:s')));
+                $json['t'] = 1;
+                $json['kode'] = str_pad($data_que->number,3,'0',STR_PAD_LEFT);
+                $json['msg'] = 'Sukses';
+                //$this->sendNotif(['id' => $call_id], 'panggilan-loket');
+            }
+        }
+        die(json_encode($json));
+    }
     function call_antri(){
 	    $json['t'] = 0;
 	    $json['msg'] = 'Invalid data';
 	    $que_id = $this->input->post('que_id');
-	    $data_que = $this->dbase->dataRow('queue',array('que_id'=>$que_id));
+	    $data_que = $this->dbase->dataRow('queue_new',array('id'=>$que_id));
 	    if (!$que_id || !$data_que){
 	        $json['msg'] = 'Invalid data antri';
         } else {
-	        $ar_call = array('que_id'=>$que_id,'user_id'=>$this->session->userdata('user_id'),'call_date'=>date('Y-m-d H:i:s'));
-	        $call_id = $this->dbase->dataInsert('calling',$ar_call);
+	        //$ar_call = array('que_id'=>$que_id,'user_id'=>$this->session->userdata('user_id'),'call_date'=>date('Y-m-d H:i:s'));
+	        //$call_id = $this->dbase->dataInsert('calling',$ar_call);
+            $call_id = $this->dbase->dataInsert('calling_loket', ['queue_id' => $que_id, 'hari' => \Carbon\Carbon::now()->format('Y-m-d')]);
 	        if (!$call_id){
 	            $json['msg'] = 'Database error';
             } else {
-	            $this->dbase->dataUpdate('queue',array('que_id'=>$que_id),array('que_call'=>1));
+	            $this->dbase->dataUpdate('queue_new',array('id'=>$que_id),array('call_at'=> \Carbon\Carbon::now()->format('Y-m-d H:i:s')));
 	            $json['t'] = 1;
-	            $json['kode'] = $data_que->que_kode.$data_que->que_kode2;
+	            $json['kode'] = str_pad($data_que->number,3,'0',STR_PAD_LEFT);
 	            $json['msg'] = 'Sukses';
 	            //$this->sendNotif(['id' => $call_id], 'panggilan-loket');
             }
@@ -258,34 +325,27 @@ class Home extends MY_Controller {
     function load_antrian_poli(){
         $json['t'] = 0;
         $json['msg'] = 'Invalid data';
-        $poli_id = $this->input->post('loket_id');
-        $data_poli = $this->dbase->dataRow('poli',array('poli_id'=>$poli_id));
-        if (!$poli_id || !$data_poli){
-            $json['msg'] = 'Invalid data poli';
+        $loket_id = $this->input->post('loket_id');
+        $data_loket = $this->dbase->dataRow('poli',[ 'poli_id'=>$loket_id]);
+        if (!$loket_id || !$data_loket){
+            $json['msg'] = 'Invalid data loket';
         } else {
-            $data_antri = $this->dbase->dataResult('queue_poli',array('qpol_status'=>1,'poli_id'=>$poli_id,'DATE(qpol_date)'=>date('Y-m-d')));
+            $today = \Carbon\Carbon::now();
+            $data_antri = $this->dbase->dataResult('queue_poli_new',[  'tanggal' => $today->format('Y-m-d'), 'poli_id' => $loket_id ], false, 'number', 'asc');
+            //$data_antri = $this->dbase->dataResult('queue_new',array('que_status'=>1,'loket_id'=>$loket_id,'DATE(que_date)'=>date('Y-m-d')));
             if (!$data_antri){
                 $json['msg'] = 'Tidak ada antrian';
             } else {
                 $i = 0;
-                foreach ($data_antri as $value){
-                    $data_antri[$i] = $value;
-                    $data_antri[$i]->is_called = 0;
-                    $call = $this->dbase->dataRow('calling',array('qpol_id'=>$value->qpol_id));
-                    if ($call){
-                        $data_antri[$i]->is_called = 1;
-                    }
-                    $i++;
-                }
                 $json['t'] = 1;
-                $data['loket'] = $data_poli;
+                $data['loket'] = $data_loket;
                 $data['data'] = $data_antri;
                 $json['html'] = $this->load->view('load_antrian_poli',$data,TRUE);
             }
         }
         die(json_encode($json));
     }
-    function call_antri_poli(){
+    /*function call_antri_poli(){
         $json['t'] = 0;
         $json['msg'] = 'Invalid data';
         $qpol_id = $this->input->post('que_id');
@@ -306,5 +366,5 @@ class Home extends MY_Controller {
             }
         }
         die(json_encode($json));
-    }
+    }*/
 }

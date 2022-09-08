@@ -3,6 +3,7 @@
         "mike42/escpos-php": "^2.2",
         "chillerlan/php-qrcode": "^4.3",
         "picqer/php-barcode-generator": "^2.2",
-        "pusher/pusher-php-server": "^7.0"
+        "pusher/pusher-php-server": "^7.0",
+        "nesbot/carbon": "^2.62"
     }
 }

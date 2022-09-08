@@ -2,20 +2,22 @@
 if ($data){
     $wait = 0;
     foreach ($data as $val){
-        if ($val->is_called == 0){
+        if ($val->call_at == null){
             $call = '<span class="label label-default">Menunggu</span>';
             $wait++;
         } else {
-            $call = '<a title="Ulangi panggilan" href="javascript:;" class="btn btn-xs btn-default" onclick="call_antri(this);return false" data-id="'.$val->que_id.'">
-                        <i class="fa fa-microphone"></i>
-                    </a>
-                    <span class="label label-primary">Terpanggil</span> ';
+            $call = '<span class="label label-primary">Terpanggil</span> ';
         }
         ?>
-        <tr class="row_<?php echo $val->que_id;?>">
-            <td align="center"><?php echo $val->que_kode.$val->que_kode2;?></td>
-            <td align="center"><?php echo date('H:i',strtotime($val->que_date));?></td>
-            <td align="center" class="call_<?php echo $val->que_id;?>"><?php echo $call;?></td>
+        <tr class="row_<?php echo $val->id;?>">
+            <td align="center"><?php echo str_pad($val->number,3,'0',STR_PAD_LEFT);?></td>
+            <td align="center"><?php echo \Carbon\Carbon::parse($val->created_at)->format('H:i');?></td>
+            <td align="center" class="call_<?php echo $val->id;?>">
+                <a title="Panggil Antrian" href="javascript:;" class="bn btn-xs btn-default" onclick="call_antri(this);return false" data-id="<?= $val->id ?>">
+                    <i class="fa fa-microphone"></i>
+                    <?= $call ?>
+                </a>
+            </td>
         </tr>
         <?php
     }

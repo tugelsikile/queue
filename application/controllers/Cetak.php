@@ -16,6 +16,85 @@ class Cetak extends CI_Controller {
 	public function index(){
 
 	}
+	function insert_queue_loket(){
+        $json['t'] = 0;
+        $json['msg'] = 'error';
+        $poli_id = $this->input->post('poli_id');
+        $dataPoli = $this->dbase->dataRow('poli', ['poli_id' => $poli_id]);
+        if ($dataPoli == null) {
+            $json['msg'] = 'Poli tidak valid';
+        } else {
+            $today = Carbon\Carbon::now();
+            //die(var_dump($today->dayOfWeek));
+            $jadwalPoli = $this->dbase->dataRow('poli_schedule', ['hari' => $today->dayOfWeek, 'poli_id' => $poli_id]);
+            if ($jadwalPoli == null) {
+                $json['msg'] = 'Poli ' . $dataPoli->poli_name . ' tidak memiliki jadwal';
+            } else {
+                if (\Carbon\Carbon::parse($today->format('Y-m-d') .' ' . $jadwalPoli->open. ':00')->isFuture()) {
+                    $json['msg'] = 'Antrian poli ini belum dibuka';
+                } elseif (\Carbon\Carbon::parse($today->format('Y-m-d') . ' ' . $jadwalPoli->close . ':00')->isPast()) {
+                    $json['msg'] = 'Antrian poli ini sudah ditutup';
+                } else {
+                    $newQuota = count($this->dbase->dataResult('queue_new', ['tanggal' => $today->format('Y-m-d'), 'poli_id' => $poli_id]));
+                    if ($newQuota > $jadwalPoli->quota && $jadwalPoli->quota > 0) {
+                        $json['msg'] = 'Quota poli sudah habis';
+                    } else {
+                        $newUrut = count($this->dbase->dataResult('queue_new', ['tanggal' => $today->format('Y-m-d')])) + 1;
+                        $id_queue = $this->dbase->dataInsert('queue_new', ['tanggal' => $today->format('Y-m-d'), 'number' => $newUrut, 'created_at' => $today->format('Y-m-d H:i:s'), 'poli_id' => $poli_id, 'loket_id' => $dataPoli->loket_id]);
+                        $json['data'] = $this->dbase->dataRow('queue_new', ['id' => $id_queue]);
+                        $this->printAntrian($dataPoli,$json['data']);
+                        $json['msg'] = 'ok';
+                        $json['t'] = 1;
+                    }
+                }
+            }
+        }
+        die(json_encode($json));
+    }
+    function printAntrian($poli,$queue) {
+        try {
+            $dataPrinter = $this->dbase->dataRow('printer');
+            if ($dataPrinter != null) {
+                if (strlen($dataPrinter->name) > 0) {
+                    $printerpath = 'smb://' . $dataPrinter->ip . '/' . $dataPrinter->name;
+                    $profile = CapabilityProfile::load("simple");
+                    $connector = new WindowsPrintConnector($printerpath);
+                    $printer = new Printer($connector, $profile);
+                    try {
+                        $generator = new Picqer\Barcode\BarcodeGeneratorJPG();
+                        $kode_poli_lengkap = $poli->poli_kode . str_pad($queue->number,3,'0',STR_PAD_LEFT);
+                        $dir = FCPATH . '/assets/barcode/' . \Carbon\Carbon::now()->format('Ymd') ;
+                        $path = $dir . '/' . $kode_poli_lengkap . '.jpg';
+                        if (!file_exists($dir)) {
+                            mkdir($dir,0777,true);
+                        }
+                        file_put_contents($path, $generator->getBarcode($kode_poli_lengkap, $generator::TYPE_CODE_128_A));
+
+                        $barcode = EscposImage::load($path);
+                        $printer -> setJustification(Printer::JUSTIFY_CENTER);
+                        $printer -> feed(5);
+                        $printer -> text("Nomor Antrian :");
+                        $printer -> feed(1);
+                        $printer -> setTextSize(8, 8);
+                        $printer -> text($kode_poli_lengkap);
+                        $printer -> feed(2);
+                        $printer -> bitImage($barcode,3);
+                        $printer -> feed(2);
+                        $printer -> setTextSize(1, 1);
+                        $printer -> text(\Carbon\Carbon::now()->translatedFormat('l, d F Y, H:i'));
+                        $printer -> feed(5);
+                    } catch (Exception $e) {
+                        $printer -> close();
+                        $printer -> text($e -> getMessage() . "\n");
+                    }
+                    $printer -> cut();
+                    $printer -> close();
+                }
+            }
+        } catch (Exception $exception) {
+            return false;
+        }
+    }
     function insert_queue(){
         date_default_timezone_set('Asia/Jakarta');
 	    $json['t'] = 0;

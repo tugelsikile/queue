@@ -10,7 +10,7 @@
         <label for="hari_name" class="control-label col-md-3">Hari</label>
         <div class="col-md-9">
             <select name="hari" class="form-control" id="hari_name">
-                <option value="7">Minggu</option>
+                <option value="0">Minggu</option>
                 <option value="1">Senin</option>
                 <option value="2">Selasa</option>
                 <option value="3">Rabu</option>

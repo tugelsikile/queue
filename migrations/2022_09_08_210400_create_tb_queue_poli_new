@@ -1,0 +1,11 @@
+CREATE TABLE `tb_queue_poli_new`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `tanggal` date NULL,
+  `number` bigint UNSIGNED NULL,
+  `call_at` datetime NULL,
+  `created_at` datetime NULL,
+  `poli_id` bigint UNSIGNED NOT NULL,
+  `finish_at` datetime NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `queue_poli_new_poli_id_foreign` FOREIGN KEY (`poli_id`) REFERENCES `tb_poli` (`poli_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+);

@@ -1,0 +1,10 @@
+CREATE TABLE `tb_poli_schedule`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `poli_id` bigint UNSIGNED NOT NULL,
+  `hari` int NULL DEFAULT 1,
+  `open` varchar(50) NULL,
+  `close` varchar(50) NULL,
+  `quota` int UNSIGNED NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `poli_schedule_poli_foreign` FOREIGN KEY (`poli_id`) REFERENCES `tb_poli` (`poli_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+);
