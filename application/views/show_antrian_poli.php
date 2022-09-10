@@ -25,11 +25,11 @@
         <div class="panel-body">
             <table class="table table-striped table-antrian">
                 <thead>
-                <tr>
-                    <th width="100px">Kode Antri</th>
-                    <th>Pukul</th>
-                    <th>Status Panggil</th>
-                </tr>
+                    <tr>
+                        <th width="100px">Kode Antri</th>
+                        <th>Pukul</th>
+                        <th>Status Panggil</th>
+                    </tr>
                 </thead>
                 <tbody>
 
@@ -44,20 +44,22 @@
     </div>
 </div>
 <script>
-
     load_antrian();
+
     function load_antrian() {
         $('.loading').show();
-        var loket_id = '<?php echo $poli->poli_id;?>'
+        var loket_id = '<?php echo $poli->poli_id; ?>'
         $.ajax({
-            url     : '<?= site_url()?>/home/load_antrian_poli',
-            type    : 'POST',
+            url: '<?= site_url() ?>/home/load_antrian_poli',
+            type: 'POST',
             dataType: 'JSON',
-            data    : { loket_id:loket_id },
-            success : function (dt) {
-                if (dt.t == 0){
+            data: {
+                loket_id: loket_id
+            },
+            success: function(dt) {
+                if (dt.t == 0) {
                     $('.loading').hide();
-                    $('.table-antrian tbody').html('<tr><td align="center">'+dt.msg+'</td></tr>');
+                    $('.table-antrian tbody').html('<tr><td align="center">' + dt.msg + '</td></tr>');
                 } else {
                     $('.loading').hide();
                     $('.table-antrian tbody').html(dt.html);
@@ -65,52 +67,64 @@
             }
         });
     }
+
     function next_antri() {
-        var next_antri = $('.data-antri').find('.label-primary').eq($('.data-antri').find('.label-primary').length-1).parents('tr').next('tr').attr('class');
-        if (!next_antri){
+        var next_antri = $('.data-antri').find('.label-primary').eq($('.data-antri').find('.label-primary').length - 1).parents('tr').next('tr').attr('class');
+        if (!next_antri) {
             next_antri = $('.table-antrian tbody tr').eq(0).attr('class');
         }
 
-        next_antri = next_antri.replace("row_","");
+        next_antri = next_antri.replace("row_", "");
         //console.log(next_antri);
-        var ob = {'data-id':next_antri};
+        var ob = {
+            'data-id': next_antri
+        };
         call_antri(ob);
 
-        var cur_antri_id =  $('.cur-antri').attr('data-id');
-        var next_antri_id = $('.table-antrian tbody').find('.row_'+cur_antri_id).next('tr').length;
-        if (next_antri_id == 0){
+        var cur_antri_id = $('.cur-antri').attr('data-id');
+        var next_antri_id = $('.table-antrian tbody').find('.row_' + cur_antri_id).next('tr').length;
+        if (next_antri_id == 0) {
             $('.btn-next').addClass('disabled');
         }
         var wait = parseInt($('.tunggu').text());
         var call = parseInt($('.terpanggil').text());
-        $('.tunggu').text(wait-1);
-        $('.terpanggil').text(call+1);
+        $('.tunggu').text(wait - 1);
+        $('.terpanggil').text(call + 1);
 
     }
+
     function ulangi_panggil() {
         var que_id = $('.cur-antri').attr('data-id');
-        var ob = {'data-id':que_id};
+        var ob = {
+            'data-id': que_id
+        };
         call_antri(ob);
     }
+
     function call_antri(ob) {
         var que_id = $(ob).attr('data-id');
-        if (que_id){
+        if (que_id) {
             $('.loading').show();
             $.ajax({
-                url     : '<?= site_url()?>/home/call_antri_poli',
-                type    : 'POST',
+                url: '<?= site_url() ?>/home/call_antri_poli',
+                type: 'POST',
                 dataType: 'JSON',
-                data    : { que_id:que_id },
-                success : function (dt) {
-                    if (dt.t == 0){
+                data: {
+                    que_id: que_id
+                },
+                success: function(dt) {
+                    console.log(dt.loket);
+                    if (dt.t == 0) {
                         $('.loading').hide();
                         show_info(dt.msg);
                     } else {
                         $('.loading').hide();
                         $('.cur-antri').html(dt.kode);
-                        $('.cur-antri').attr({'data-id':que_id});
+                        $('.cur-antri').attr({
+                            'data-id': que_id
+                        });
                         //update table
-                        $('.call_'+que_id).html('<a title="Ulangi panggilan" href="javascript:;" class="btn btn-xs btn-default" onclick="call_antri(this);return false" data-id="'+que_id+'">' +
+                        $('.call_' + que_id).html('<a title="Ulangi panggilan" href="javascript:;" class="btn btn-xs btn-default" onclick="call_antri(this);return false" data-id="' + que_id + '">' +
                             '                        <i class="fa fa-microphone"></i>' +
                             '                    </a>' +
                             '                    <span class="label label-primary">Terpanggil</span>');
@@ -126,7 +140,13 @@
         width: 100%;
     }
 
-    thead, tbody, tr, td, th { display: block; }
+    thead,
+    tbody,
+    tr,
+    td,
+    th {
+        display: block;
+    }
 
     tr:after {
         content: ' ';
@@ -151,7 +171,8 @@
     }
 
 
-    tbody td, thead th {
+    tbody td,
+    thead th {
         width: 33%;
         float: left;
     }
