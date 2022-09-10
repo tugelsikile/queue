@@ -223,8 +223,6 @@
         </div>
         <!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=gctISVcE"></script> -->
         <script>
-            read_entry();
-
             function read_entry() {
                 $.ajax({
                     url: '<?php echo site_url('big_screen/read_entry'); ?>',
@@ -241,7 +239,10 @@
                     }
                 });
             }
-
+            window.setInterval(function () {
+                read_entry();
+            }, 1000);
+            /*read_entry();*/
             function opening(kode, code) {
                 let opening = new Audio();
                 opening.src = window.origin + '/assets/voices/' + 'opening.mp3';

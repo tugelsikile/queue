@@ -230,13 +230,15 @@
                 }
             });
         }
-        $(document).ready(function (e) {
+        /*$(document).ready(function (e) {
             responsiveVoice.setDefaultVoice("Indonesian Female");
             setInterval(function () {
                 read_entry();
             },15000)
-        });
-        read_entry();
+        });*/
+        window.setInterval(function () {
+            read_entry();
+        }, 1000);
     </script>
     <div class="col-md-7" style="padding-right: 0">
         <div class="panel panel-danger">

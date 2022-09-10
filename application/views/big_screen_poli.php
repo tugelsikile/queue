@@ -248,7 +248,10 @@
             //         read_entry();
             //     }, 15000)
             // });
-            read_entry();
+
+            window.setInterval(function () {
+                read_entry();
+            }, 1000);
 
             function opening(kode, code) {
                 let opening = new Audio();

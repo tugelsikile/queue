@@ -390,26 +390,31 @@ class Home extends MY_Controller
     public function sendToPoly()
     {
         $id = $this->input->post('que_id');
-        $data_que = $this->dbase->dataRow('queue_new', array('id' => $id));
-        //die(var_dump($data_que));
-        $today = \Carbon\Carbon::now();
+        if (strlen($id) == 0) {
+            die("Data tidak valid");
+        } else {
+            $data_que = $this->dbase->dataRow('queue_new', array('id' => $id));
+            //die(var_dump($data_que));
+            $today = \Carbon\Carbon::now();
 
-        // $number = $this->dbase->dataRow("queue_poli_new", false, "MAX(number) as number");
-        // $nomor = $number->number;
-        // (int) $nomor;
-        // if ($nomor == null) {
-        //     $nomor = 1;
-        // } else {
-        //     $nomor++;
-        // }
+            // $number = $this->dbase->dataRow("queue_poli_new", false, "MAX(number) as number");
+            // $nomor = $number->number;
+            // (int) $nomor;
+            // if ($nomor == null) {
+            //     $nomor = 1;
+            // } else {
+            //     $nomor++;
+            // }
 
-        $this->dbase->dataInsert('queue_poli_new', [
-            'created_at' => $today->format('Y-m-d H:i:s'),
-            'number' => $data_que->number,
-            'poli_id' => $data_que->poli_id,
-            'tanggal' => $today->format('Y-m-d H:i:s'),
+            $this->dbase->dataInsert('queue_poli_new', [
+                'created_at' => $today->format('Y-m-d H:i:s'),
+                'number' => $data_que->number,
+                'poli_id' => $data_que->poli_id,
+                'tanggal' => $today->format('Y-m-d H:i:s'),
 
-        ]);
-        die(json_encode('success'));
+            ]);
+            die(json_encode('success'));
+        }
+
     }
 }

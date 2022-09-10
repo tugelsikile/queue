@@ -149,7 +149,12 @@
             data: {
                 'que_id': queue_id,
             },
+            error : function(e){
+                console.log(e.responseText);
+                alert(e.responseText);
+            },
             success: function(res) {
+                alert(res);
                 console.log(res);
             }
         });
