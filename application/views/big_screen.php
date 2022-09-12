@@ -221,50 +221,46 @@
                 </div>
             </div>
         </div>
-        <!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=gctISVcE"></script> -->
         <script>
+            var playing = false;
             function read_entry() {
-                $.ajax({
-                    url: '<?php echo site_url('big_screen/read_entry'); ?>',
-                    type: 'POST',
-                    dataType: 'JSON',
-                    success: function(dt) {
-                        console.log(dt);
-                        if (dt.t == 1) {
-                            $('.loket_name').html(dt.loket_name);
-                            $('.nomorAntri').html(dt.que_kode);
-                            opening(dt.que_kode);
+                if (!playing){
+                    $.ajax({
+                        url: '<?= site_url('big_screen/read_entry'); ?>',
+                        type: 'POST',
+                        dataType: 'JSON',
+                        success: function(dt) {
+                            if (dt.t === 1) {
+                                $('.loket_name').html(dt.loket_name);
+                                $('.nomorAntri').html(dt.que_kode);
+                                opening(dt.que_kode);
+                            }
                         }
-
-                    }
-                });
+                    });
+                }
             }
             window.setInterval(function () {
                 read_entry();
             }, 1000);
-            /*read_entry();*/
             function opening(kode, code) {
+                playing = true;
                 let opening = new Audio();
                 opening.src = window.origin + '/assets/voices/' + 'opening.mp3';
                 opening.play();
-
                 opening.onloadedmetadata = function() {
                     setTimeout(function() {
-                        text_to_speech(kode, code)
+                        text_to_speech(kode, code);
                     }, parseFloat(Math.round(opening.duration) + '000'));
                 }
-
             }
-
             function ending1() {
                 let menuju = new Audio(window.origin + '/assets/voices/' + 'silahkan_menuju.mp3');
                 menuju.play();
-
                 setTimeout(function() {
                     ending2();
+                    playing = false;
                 }, 2000);
             }
-
             function ending2() {
                 let loket = $('.loket_name').html();
                 if (loket == 'Pendaftaran 1') {
@@ -275,9 +271,7 @@
                     loket_2.play();
                 }
             }
-
             function text_to_speech(kode, cek = 0) {
-
                 let code = parseInt(kode)
                 let angka = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
                 if (code < 12) {
@@ -307,7 +301,6 @@
                         }
 
                     }, 800);
-
                     return true
                 } else if (code < 100) {
                     text_to_speech(code / 10, kode);
@@ -330,8 +323,6 @@
                             }, 800)
                         }
                     }, 800);
-
-
                     return true
                 } else if (code < 200) {
                     if (code == 100) {
@@ -353,13 +344,11 @@
                             }, parseFloat(Math.round(voice.duration) + '000'));
                         }
                     }
-
                 } else if (code < 1000) {
                     text_to_speech(code / 100, kode);
                     setTimeout(function() {
                         let voice = new Audio(window.origin + '/assets/voices/' + 'ratus.mp3');
                         voice.play();
-
                         if (code % 100 == 0) {
                             voice.onloadedmetadata = function() {
                                 setTimeout(function() {
@@ -367,18 +356,15 @@
                                 }, parseFloat(Math.round(voice.duration) + '000'));
                             }
                         }
-
                         if (code % 100 > 0) {
-
                             setTimeout(function() {
                                 text_to_speech(code % 100, 0);
                             }, 800)
 
                         }
-                    }, 800)
+                    }, 800);
                     return true
                 }
-
             }
         </script>
         <div class="col-md-7" style="padding-right: 0">

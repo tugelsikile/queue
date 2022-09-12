@@ -226,6 +226,7 @@
         </div>
         <!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=gctISVcE"></script> -->
         <script>
+            var playing = false;
             function read_entry() {
                 // responsiveVoice.setDefaultVoice("Indonesian Female");
                 $.ajax({
@@ -254,6 +255,7 @@
             }, 1000);
 
             function opening(kode, code) {
+                playing = true;
                 let opening = new Audio();
                 opening.src = window.origin + '/assets/voices/' + 'opening.mp3';
                 opening.play();
@@ -272,6 +274,7 @@
 
                 setTimeout(function() {
                     ending2();
+                    playing = false;
                 }, 2000);
             }
 
@@ -294,6 +297,7 @@
                     let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'askulap.mp3')
                     poli_umum.play();
                 }
+                playing = false;
             }
 
             function text_to_speech(kode, cek = 0) {

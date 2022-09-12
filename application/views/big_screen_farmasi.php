@@ -214,7 +214,7 @@
     </div>
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=gctISVcE"></script>
     <script>
-
+        var playing = false;
         function read_entry(){
             responsiveVoice.setDefaultVoice("Indonesian Female");
             $.ajax({
