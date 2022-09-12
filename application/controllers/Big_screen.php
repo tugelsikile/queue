@@ -28,7 +28,8 @@ class Big_screen extends CI_Controller
     {
         $data['marquee'] = $this->dbase->dataResult('marquee', array('rt_status' => 1));
         $data['media'] = $this->dbase->dataResult('media', array('media_status' => 1));
-        $this->load->view('big_screen_poli', $data);
+        //$this->load->view('big_screen_poli', $data);
+        $this->load->view('big_screen_poli_2', $data);
     }
     public function read_entry()
     {

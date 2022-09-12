@@ -227,6 +227,7 @@
         <!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=gctISVcE"></script> -->
         <script>
             var playing = false;
+
             function read_entry() {
                 if (!playing) {
                     $.ajax({
@@ -244,9 +245,10 @@
                     });
                 }
             }
-            window.setInterval(function () {
+            window.setInterval(function() {
                 read_entry();
             }, 1000);
+
             function opening(kode, code) {
                 playing = true;
                 let opening = new Audio();
@@ -258,6 +260,7 @@
                     }, parseFloat(Math.round(opening.duration) + '000'));
                 }
             }
+
             function ending1() {
                 let menuju = new Audio(window.origin + '/assets/voices/' + 'silahkan_menuju.mp3');
                 menuju.play();
@@ -266,6 +269,7 @@
                     playing = false;
                 }, 2000);
             }
+
             function ending2() {
                 let loket = $('.loket_name').html();
                 console.log(loket);
@@ -287,6 +291,7 @@
                 }
                 playing = false;
             }
+
             function text_to_speech(kode, cek = 0) {
                 let code = parseInt(kode)
                 let angka = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
