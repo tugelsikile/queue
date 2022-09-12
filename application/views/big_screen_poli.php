@@ -228,60 +228,48 @@
         <script>
             var playing = false;
             function read_entry() {
-                // responsiveVoice.setDefaultVoice("Indonesian Female");
-                $.ajax({
-                    url: '<?php echo site_url('big_screen/read_entry_poli'); ?>',
-                    type: 'POST',
-                    dataType: 'JSON',
-                    success: function(dt) {
-                        if (dt.t == 1) {
-                            $('.loket_name').html(dt.loket_name);
-                            $('.nomorAntri').html(dt.que_kode);
-                            // responsiveVoice.speak(dt.speaker);
-                            opening(dt.que_kode, 0)
+                if (!playing) {
+                    $.ajax({
+                        url: '<?php echo site_url('big_screen/read_entry_poli'); ?>',
+                        type: 'POST',
+                        dataType: 'JSON',
+                        success: function(dt) {
+                            if (dt.t === 1) {
+                                $('.loket_name').html(dt.loket_name);
+                                $('.nomorAntri').html(dt.que_kode);
+                                // responsiveVoice.speak(dt.speaker);
+                                opening(dt.que_kode, 0)
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
-            // $(document).ready(function(e) {
-            //     responsiveVoice.setDefaultVoice("Indonesian Female");
-            //     setInterval(function() {
-            //         read_entry();
-            //     }, 15000)
-            // });
-
             window.setInterval(function () {
                 read_entry();
             }, 1000);
-
             function opening(kode, code) {
                 playing = true;
                 let opening = new Audio();
                 opening.src = window.origin + '/assets/voices/' + 'opening.mp3';
                 opening.play();
-
                 opening.onloadedmetadata = function() {
                     setTimeout(function() {
                         text_to_speech(kode, code)
                     }, parseFloat(Math.round(opening.duration) + '000'));
                 }
-
             }
-
             function ending1() {
                 let menuju = new Audio(window.origin + '/assets/voices/' + 'silahkan_menuju.mp3');
                 menuju.play();
-
                 setTimeout(function() {
                     ending2();
                     playing = false;
                 }, 2000);
             }
-
             function ending2() {
                 let loket = $('.loket_name').html();
                 console.log(loket);
-                if (loket == 'Umum') {
+                if (loket === 'Umum') {
                     let poli_umum = new Audio(window.origin + '/assets/voices/' + 'poli_umum.mp3')
                     poli_umum.play();
                 } else if (loket == 'Mtbs') {
@@ -299,16 +287,12 @@
                 }
                 playing = false;
             }
-
             function text_to_speech(kode, cek = 0) {
-
                 let code = parseInt(kode)
                 let angka = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
                 if (code < 12) {
-
                     let voice = new Audio(window.origin + '/assets/voices/' + angka[code] + '.mp3');
                     voice.play();
-
                     if (cek > 12) {
                         return;
                     }
@@ -331,7 +315,6 @@
                         }
 
                     }, 800);
-
                     return true
                 } else if (code < 100) {
                     text_to_speech(code / 10, kode);
@@ -346,22 +329,17 @@
                                 }, parseFloat(Math.round(voice2.duration) + '000'))
                             }
                         }
-
-
                         if (code % 10 > 0) {
                             setTimeout(function() {
                                 text_to_speech(code % 10, 0);
                             }, 800)
                         }
                     }, 800);
-
-
                     return true
                 } else if (code < 200) {
                     if (code == 100) {
                         let voice = new Audio(window.origin + '/assets/voices/' + '100.mp3');
                         voice.play();
-
                         voice.onloadedmetadata = function() {
                             setTimeout(function() {
                                 ending1();
@@ -370,20 +348,17 @@
                     } else {
                         let voice = new Audio(window.origin + '/assets/voices/' + '100.mp3');
                         voice.play();
-
                         voice.onloadedmetadata = function() {
                             setTimeout(function() {
                                 text_to_speech(code - 100);
                             }, parseFloat(Math.round(voice.duration) + '000'));
                         }
                     }
-
                 } else if (code < 1000) {
                     text_to_speech(code / 100, kode);
                     setTimeout(function() {
                         let voice = new Audio(window.origin + '/assets/voices/' + 'ratus.mp3');
                         voice.play();
-
                         if (code % 100 == 0) {
                             voice.onloadedmetadata = function() {
                                 setTimeout(function() {
@@ -391,18 +366,15 @@
                                 }, parseFloat(Math.round(voice.duration) + '000'));
                             }
                         }
-
                         if (code % 100 > 0) {
 
                             setTimeout(function() {
                                 text_to_speech(code % 100, 0);
                             }, 800)
-
                         }
                     }, 800)
                     return true
                 }
-
             }
         </script>
         <div class="col-md-7" style="padding-right: 0">

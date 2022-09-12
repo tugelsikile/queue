@@ -31,11 +31,11 @@ if ($data){
     var cur_antri = $('.data-antri').find('.label-primary').eq($('.data-antri').find('.label-primary').length-1).parents('tr').find('td').eq(0).text();
     var que_id  = $('.data-antri').find('.label-primary').eq($('.data-antri').find('.label-primary').length-1).parents('tr').attr('class');
     if (cur_antri){
-        $('.cur-antri').html(cur_antri);
+        //$('.cur-antri').html(cur_antri);
     }
     if (que_id){
         que_id = que_id.replace("row_","");
-        $('.cur-antri').attr({'data-id':que_id});
+        //$('.cur-antri').attr({'data-id':que_id});
     }
     //console.log(cur_antri)
     <?php

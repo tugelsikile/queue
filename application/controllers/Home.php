@@ -225,7 +225,7 @@ class Home extends MY_Controller
             $json['msg'] = 'Invalid data loket';
         } else {
             $today = \Carbon\Carbon::now();
-            $data_antri = $this->dbase->dataResult('queue_new', ['tanggal' => $today->format('Y-m-d')], false, 'number', 'asc');
+            $data_antri = $this->dbase->dataResult('queue_new', ['tanggal' => $today->format('Y-m-d')], false, 'created_at', 'asc');
             //$data_antri = $this->dbase->dataResult('queue_new',array('que_status'=>1,'loket_id'=>$loket_id,'DATE(que_date)'=>date('Y-m-d')));
             if (!$data_antri) {
                 $json['msg'] = 'Tidak ada antrian';
@@ -298,7 +298,7 @@ class Home extends MY_Controller
         } else {
             //$ar_call = array('que_id'=>$que_id,'user_id'=>$this->session->userdata('user_id'),'call_date'=>date('Y-m-d H:i:s'));
             //$call_id = $this->dbase->dataInsert('calling',$ar_call);
-            $call_id = $this->dbase->dataInsert('calling_loket', ['queue_id' => $que_id, 'hari' => \Carbon\Carbon::now()->format('Y-m-d')]);
+            $call_id = $this->dbase->dataInsert('calling_loket', ['queue_id' => $que_id, 'hari' => \Carbon\Carbon::now()->format('Y-m-d'), 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
             if (!$call_id) {
                 $json['msg'] = 'Database error';
             } else {
