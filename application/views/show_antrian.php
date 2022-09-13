@@ -112,7 +112,8 @@
                 type: 'POST',
                 dataType: 'JSON',
                 data: {
-                    que_id: que_id
+                    que_id: que_id,
+                    'loket': '<?php echo $loket->loket_id; ?>',
                 },
                 success: function(dt) {
                     if (dt.t == 0) {
@@ -149,7 +150,7 @@
             data: {
                 'que_id': queue_id,
             },
-            error : function(e){
+            error: function(e) {
                 console.log(e.responseText);
                 alert(e.responseText);
             },

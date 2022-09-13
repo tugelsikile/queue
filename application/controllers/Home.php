@@ -250,7 +250,7 @@ class Home extends MY_Controller
         } else {
             //$ar_call = array('que_id'=>$que_id,'user_id'=>$this->session->userdata('user_id'),'call_date'=>date('Y-m-d H:i:s'));
             //$call_id = $this->dbase->dataInsert('calling',$ar_call);
-            $call_id = $this->dbase->dataInsert('calling_poli', ['queue_id' => $que_id, 'hari' => \Carbon\Carbon::now()->format('Y-m-d')]);
+            $call_id = $this->dbase->dataInsert('calling_poli', ['queue_id' => $que_id, 'hari' => \Carbon\Carbon::now()->format('Y-m-d'), 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
             if (!$call_id) {
                 $json['msg'] = 'Database error';
             } else {
@@ -293,6 +293,7 @@ class Home extends MY_Controller
         $json['msg'] = 'Invalid data';
         $que_id = $this->input->post('que_id');
         $data_que = $this->dbase->dataRow('queue_new', array('id' => $que_id));
+        $loket = $this->input->post('loket');
         if (!$que_id || !$data_que) {
             $json['msg'] = 'Invalid data antri';
         } else {
@@ -302,7 +303,7 @@ class Home extends MY_Controller
             if (!$call_id) {
                 $json['msg'] = 'Database error';
             } else {
-                $this->dbase->dataUpdate('queue_new', array('id' => $que_id), array('call_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')));
+                $this->dbase->dataUpdate('queue_new', array('id' => $que_id), array('call_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'), 'loket_id' => $loket));
                 $json['t'] = 1;
                 $json['kode'] = str_pad($data_que->number, 3, '0', STR_PAD_LEFT);
                 $json['msg'] = 'Sukses';
@@ -389,6 +390,7 @@ class Home extends MY_Controller
 
     public function sendToPoly()
     {
+        $message = "";
         $id = $this->input->post('que_id');
         if (strlen($id) == 0) {
             die("Data tidak valid");
@@ -406,15 +408,22 @@ class Home extends MY_Controller
             //     $nomor++;
             // }
 
-            $this->dbase->dataInsert('queue_poli_new', [
-                'created_at' => $today->format('Y-m-d H:i:s'),
-                'number' => $data_que->number,
-                'poli_id' => $data_que->poli_id,
-                'tanggal' => $today->format('Y-m-d H:i:s'),
+            $cek = $this->dbase->dataRow('queue_poli_new', ['number' => $data_que->number]);
 
-            ]);
-            die(json_encode('success'));
+            if ($cek !== null) {
+                $message = "Data Sudah Dikirim";
+                die(json_encode($message));
+            } else {
+                $this->dbase->dataInsert('queue_poli_new', [
+                    'created_at' => $today->format('Y-m-d H:i:s'),
+                    'number' => $data_que->number,
+                    'poli_id' => $data_que->poli_id,
+                    'tanggal' => $today->format('Y-m-d H:i:s'),
+
+                ]);
+                $message = "Success";
+                die(json_encode($message));
+            }
         }
-
     }
 }

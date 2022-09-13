@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import axios from "axios";
+import {Howl, Howler} from 'howler';
 
 export default class BigScreenPoli extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            playing: false,
-            data_que: { loket_name: "", que_kode: "" },
+            playing: true,
+            repeat: localStorage.getItem('repeat'),
+            data_que: { loket_name: "", que_kode: "", call_at:null},
             current_count : 0, intervalId : null,
         }
 
@@ -17,38 +19,74 @@ export default class BigScreenPoli extends React.Component {
         this.text_to_speech = this.text_to_speech.bind(this);
         this.readEntry = this.readEntry.bind(this);
         this.timer = this.timer.bind(this);
+        this.getMedia = this.getMedia.bind(this);
     }
 
-    componentDidMount() {
+    componentDidMount() { 
+        // this.getMedia();
+    //      const checkHTML5Audio = async () => {
+    //   const audio = new Audio();
+    //   try {
+    //     audio.play();
+    //     Promise.resolve(false);
+    //   } catch (err) {
+    //     Promise.resolve(true);
+    //   }
+    // };
+    //    try {
+    //   const context = new (window.AudioContext || window.webkitAudioContext)();
+    //        Promise.resolve(context.state === 'suspended');
+    //        console.log(context);
+    //    } catch (e) {
+    //        console.log(e)
+    //   checkHTML5Audio();
+    // }
         var intervalId = setInterval(() => this.timer(),100);
         this.setState({intervalId});
-        this.readEntry()
+        this.readEntry();
+    }
+
+    getMedia() {
+        let context = new AudioContext();
+        context.onstatechange = 'running';
+        console.log(context);
+        // var audio = new Howl({
+        //     autoplay:true,
+        //     src: window.origin + '/assets/voices/' + 'opening.mp3',
+        // });
+        // audio.play();
     }
 
     timer() {
         let newCount = this.state.current_count + 1;
         if (newCount >= 30) {
             this.setState({ current_count: 0 });
-            if (!this.state.playing) {
-                this.readEntry();
-            }
+            this.readEntry();
         } else {
             this.setState({current_count:newCount});
         }
     }
-
     readEntry() {
       
              Promise.resolve(axios({ method: 'post', url:window.origin + '/index.php/big_screen/read_entry_poli' }))
             .then((response) => {
-                console.log(response);
-                let que = this.state.data_que;
-                que.loket_name = response.data.loket_name;
-                que.que_kode = response.data.que_kode;
-                this.setState({ que });
-                if (this.state.playing !== false) {
-                    this.opening(this.state.que.que_kode,0);
+                console.log(response.data);
+                if (response.data.t > 0) {
+                    let que = this.state.data_que;
+                    que.loket_name = response.data.loket_name;
+                    que.que_kode = response.data.que_kode;
+                   
+                    this.setState({ que });
+                    if (this.state.data_que.que_kode !== "" && this.state.playing == true) {
+                        // if (this.state.data_que.call_at !== response.data.call_at) {
+                        //     this.opening(this.state.data_que.que_kode, 0);
+                        //     que.call_at = response.data.call_at;
+                        //     this.setState({ que });
+                        // }
+                        this.opening(this.state.data_que.que_kode, 0);
+                    }
                 }
+                
             }).catch((error) => {
                 console.log(error);
             });
@@ -57,31 +95,33 @@ export default class BigScreenPoli extends React.Component {
     }
     
     opening(kode, code) {
-        this.setState({ playing: true });
+        this.setState({ playing: false });
+      
         let opening = new Audio();
         opening.src = window.origin + '/assets/voices/' + 'opening.mp3';
-        opening.play();
-           opening.onloadedmetadata = () => {
+        opening.autoplay = true;
+            opening.play();
+            opening.onloadedmetadata = () => {
                     setTimeout( () => {
                         this.text_to_speech(kode, code)
                     }, parseFloat(Math.round(opening.duration) + '000'));
                 }
-    
         
     }
 
     ending1() {
-            let menuju = new Audio(window.origin + '/assets/voices/' + 'silahkan_menuju.mp3');
+        let menuju = new Audio(window.origin + '/assets/voices/' + 'silahkan_menuju.mp3');
+        menuju.autoplay = true;
             menuju.play();
             setTimeout(() => {
                 this.ending2();
-                this.setState({ playing: false });
+                this.setState({ playing: true });
             }, 2000);
     }
     
     ending2() {
-        let loket = this.state.que.loket_name;
-            console.log(loket);
+        localStorage.setItem('repeat', false);
+        let loket = this.state.data_que.loket_name;
             if (loket === 'Umum') {
                 let poli_umum = new Audio(window.origin + '/assets/voices/' + 'poli_umum.mp3')
                 poli_umum.play();
@@ -95,15 +135,14 @@ export default class BigScreenPoli extends React.Component {
                 let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'poli_gigi.mp3')
                 poli_umum.play();
             } else if (loket == 'Askulap') {
-                let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'askulap.mp3')
+                let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'poli_askulap.mp3')
                 poli_umum.play();
             }
-        this.setState({ playing: false });
+        this.setState({ playing: true });
     }
     
     text_to_speech(kode,cek) {
         let code = parseInt(kode)
-        console.log(kode);
             let angka = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
             if (code < 12) {
                 let voice = new Audio(window.origin + '/assets/voices/' + angka[code] + '.mp3');
@@ -194,13 +233,12 @@ export default class BigScreenPoli extends React.Component {
 
     render() {
         return (
-            <>
-                
+            <> 
                 <div className="content">
                     <div className="col-md-5" style={{paddingLeft:'0px'}}>
                         <div className="panel panel-danger antriWrap" style={{borderWidth:'10px'}}>
                             <div className="panel-heading" style={{textAlign:'center'}}>
-                                 <strong style={{fontSize:'30px'}} className="loket_name">&nbsp;</strong>
+                                <strong style={{ fontSize: '30px' }} className="loket_name">Poli {this.state.data_que.loket_name}</strong>
                             </div>
                             <div className="panel-body">
                                 <div className="nomorAntri">

@@ -113,11 +113,11 @@
                     que_id: que_id
                 },
                 success: function(dt) {
-                    console.log(dt.loket);
                     if (dt.t == 0) {
                         $('.loading').hide();
                         show_info(dt.msg);
                     } else {
+
                         $('.loading').hide();
                         $('.cur-antri').html(dt.kode);
                         $('.cur-antri').attr({

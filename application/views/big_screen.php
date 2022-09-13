@@ -223,25 +223,29 @@
         </div>
         <script>
             var playing = false;
+
             function read_entry() {
-                if (!playing){
+                if (!playing) {
                     $.ajax({
                         url: '<?= site_url('big_screen/read_entry'); ?>',
                         type: 'POST',
                         dataType: 'JSON',
                         success: function(dt) {
+                            console.log(dt);
                             if (dt.t === 1) {
                                 $('.loket_name').html(dt.loket_name);
                                 $('.nomorAntri').html(dt.que_kode);
                                 opening(dt.que_kode);
+
                             }
                         }
                     });
                 }
             }
-            window.setInterval(function () {
+            window.setInterval(function() {
                 read_entry();
             }, 1000);
+
             function opening(kode, code) {
                 playing = true;
                 let opening = new Audio();
@@ -253,6 +257,7 @@
                     }, parseFloat(Math.round(opening.duration) + '000'));
                 }
             }
+
             function ending1() {
                 let menuju = new Audio(window.origin + '/assets/voices/' + 'silahkan_menuju.mp3');
                 menuju.play();
@@ -261,9 +266,11 @@
                     playing = false;
                 }, 2000);
             }
+
             function ending2() {
                 let loket = $('.loket_name').html();
-                if (loket == 'Pendaftaran 1') {
+                console.log(loket);
+                if (loket == 'Loket 1') {
                     let loket_1 = new Audio(window.origin + '/assets/voices/' + 'loket1.mp3');
                     loket_1.play();
                 } else {
@@ -271,6 +278,7 @@
                     loket_2.play();
                 }
             }
+
             function text_to_speech(kode, cek = 0) {
                 let code = parseInt(kode)
                 let angka = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];

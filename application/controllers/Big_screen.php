@@ -58,7 +58,7 @@ class Big_screen extends CI_Controller
     function read_entry_poli()
     {
         $json['t'] = 0;
-        $data_call = $this->dbase->dataRow('calling_poli', array('call_at' => null, 'hari' => Carbon\Carbon::now()->format('Y-m-d')), '*', 'created_at', 'ASC');
+        $data_call = $this->dbase->dataRow('calling_poli', array('call_at' => null, 'hari' => \Carbon\Carbon::now()->format('Y-m-d')), '*', 'created_at', 'ASC');
         if ($data_call) {
             $data_que = $this->dbase->dataRow('queue_poli_new', array('id' => $data_call->queue_id));
             if ($data_que) {
@@ -66,14 +66,15 @@ class Big_screen extends CI_Controller
                 if ($dataMainQue) {}*/
                 $data_loket = $this->dbase->dataRow('poli', array('poli_id' => $data_que->poli_id));
                 if ($data_loket) {
-                    $this->dbase->dataUpdate('calling_poli', array('id' => $data_call->id), array('call_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')));
+                    $this->dbase->dataUpdate('calling_poli', array('id' => $data_call->id), array('call_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')));
                     $hasFarmasi = $this->dbase->dataRow('queue_farmasi_new', ['tanggal' => Carbon\Carbon::now()->format('Y-m-d'), 'number' => $data_que->number]);
                     if ($hasFarmasi == null) {
-                        $this->dbase->dataInsert('queue_farmasi_new', ['tanggal' => Carbon\Carbon::now()->format('Y-m-d'), 'number' => $data_que->number, 'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
+                        $this->dbase->dataInsert('queue_farmasi_new', ['tanggal' => Carbon\Carbon::now()->format('Y-m-d'), 'number' => $data_que->number, 'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
                     }
                     $json['t'] = 1;
                     $json['loket_name'] = $data_loket->poli_name;
                     $json['que_kode'] = str_pad($data_que->number, 3, '0', STR_PAD_LEFT);
+                    $json['call_at'] = $data_que->call_at;
                     $json['speaker'] = "Antrian untuk nomor. " . str_pad($data_que->number, 3, '0', STR_PAD_LEFT) . "! silahkan menuju? " . $data_loket->poli_name . "!";
                 }
             }

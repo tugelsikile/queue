@@ -225,7 +225,6 @@
                 </div>
             </div>
         </div> -->
-
     <script src="<?php echo base_url('assets/js/big_screen_poli.js'); ?>"></script>
 
     <!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=gctISVcE"></script> -->
