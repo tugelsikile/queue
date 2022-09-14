@@ -408,7 +408,7 @@ class Home extends MY_Controller
             //     $nomor++;
             // }
 
-            $cek = $this->dbase->dataRow('queue_poli_new', ['number' => $data_que->number]);
+            $cek = $this->dbase->dataRow('queue_poli_new', ['tanggal' => $today->format('Y-m-d'), 'number' => $data_que->number]);
 
             if ($cek !== null) {
                 $message = "Data Sudah Dikirim";

@@ -23,40 +23,24 @@ export default class BigScreenPoli extends React.Component {
     }
 
     componentDidMount() { 
-        // this.getMedia();
-    //      const checkHTML5Audio = async () => {
-    //   const audio = new Audio();
-    //   try {
-    //     audio.play();
-    //     Promise.resolve(false);
-    //   } catch (err) {
-    //     Promise.resolve(true);
-    //   }
-    // };
-    //    try {
-    //   const context = new (window.AudioContext || window.webkitAudioContext)();
-    //        Promise.resolve(context.state === 'suspended');
-    //        console.log(context);
-    //    } catch (e) {
-    //        console.log(e)
-    //   checkHTML5Audio();
-    // }
+        //this.getMedia()
+        console.log(window.Audio);
         var intervalId = setInterval(() => this.timer(),100);
         this.setState({intervalId});
         this.readEntry();
     }
+    
+   async getMedia() {
+       let stream = null;
 
-    getMedia() {
-        let context = new AudioContext();
-        context.onstatechange = 'running';
-        console.log(context);
-        // var audio = new Howl({
-        //     autoplay:true,
-        //     src: window.origin + '/assets/voices/' + 'opening.mp3',
-        // });
-        // audio.play();
+        try {
+            stream = await navigator.mediaDevices.getUserMedia(constraints);
+            console.log(stream);
+        } catch (err) {
+            console.log(err);
+        }
     }
-
+    
     timer() {
         let newCount = this.state.current_count + 1;
         if (newCount >= 30) {
@@ -128,10 +112,10 @@ export default class BigScreenPoli extends React.Component {
             } else if (loket == 'Mtbs') {
                 let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'poli_mtbs.mp3')
                 poli_umum.play();
-            } else if (loket == 'Poli Kia') {
+            } else if (loket == 'Kia') {
                 let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'poli_kia.mp3')
                 poli_umum.play();
-            } else if (loket == 'Poli Gigi') {
+            } else if (loket == 'Gigi') {
                 let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'poli_gigi.mp3')
                 poli_umum.play();
             } else if (loket == 'Askulap') {
