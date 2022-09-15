@@ -175,7 +175,7 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       //this.getMedia()
-      console.log(window.Audio);
+      // window.open("chrome://settings");
       var intervalId = setInterval(function () {
         return _this2.timer();
       }, 100);

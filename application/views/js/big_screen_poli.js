@@ -24,7 +24,7 @@ export default class BigScreenPoli extends React.Component {
 
     componentDidMount() { 
         //this.getMedia()
-        console.log(window.Audio);
+       // window.open("chrome://settings");
         var intervalId = setInterval(() => this.timer(),100);
         this.setState({intervalId});
         this.readEntry();

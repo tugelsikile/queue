@@ -8,7 +8,7 @@
             <a style="margin-right: 20px;" href="javascript:;" onclick="ulangi_panggil();return false" class="disabled btn-panggil pull-left btn btn-success btn-md">
                 <i class="fa fa-microphone"></i> Ulangi Panggilan
             </a>
-            <a id="sendPoly" style="margin-right: 20px;" href="javascript:;" class="disabled btn-panggil pull-left btn btn-success btn-md">
+            <a id="sendPoly" style="margin-right: 20px;" class="disabled btn-panggil pull-left btn btn-success btn-md">
                 <i class="fa fa-paper-plane"></i> Kirim Ke Poly
             </a>
             <a href="javascript:;" onclick="next_antri();return false" class="disabled btn-next pull-left btn btn-primary btn-md">
@@ -65,6 +65,7 @@
                     $('.loading').hide();
                     $('.table-antrian tbody').html('<tr><td align="center">' + dt.msg + '</td></tr>');
                 } else {
+                    console.log(dt.html);
                     $('.loading').hide();
                     $('.table-antrian tbody').html(dt.html);
                 }

@@ -41,10 +41,10 @@ class Big_screen extends CI_Controller
                 $data_loket = $this->dbase->dataRow('loket', array('loket_id' => $data_que->loket_id));
                 if ($data_loket) {
                     $this->dbase->dataUpdate('calling_loket', array('id' => $data_call->id), array('call_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')));
-                    $hasPoli = $this->dbase->dataRow('queue_poli_new', ['number' => $data_que->number, 'poli_id' => $data_que->poli_id, 'tanggal' => Carbon\Carbon::now()->format('Y-m-d')]);
-                    if ($hasPoli == null) {
-                        $this->dbase->dataInsert('queue_poli_new', ['number' => $data_que->number, 'poli_id' => $data_que->poli_id, 'tanggal' => Carbon\Carbon::now()->format('Y-m-d H:i:s'), 'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
-                    }
+                    //$hasPoli = $this->dbase->dataRow('queue_poli_new', ['number' => $data_que->number, 'poli_id' => $data_que->poli_id, 'tanggal' => Carbon\Carbon::now()->format('Y-m-d')]);
+                    // if ($hasPoli == null) {
+                    //     $this->dbase->dataInsert('queue_poli_new', ['number' => $data_que->number, 'poli_id' => $data_que->poli_id, 'tanggal' => Carbon\Carbon::now()->format('Y-m-d H:i:s'), 'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
+                    // }
                     $json['t'] = 1;
                     $json['loket_name'] = $data_loket->loket_name;
                     $json['que_kode'] = str_pad($data_que->number, 3, '0', STR_PAD_LEFT);

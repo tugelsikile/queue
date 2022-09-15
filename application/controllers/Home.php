@@ -396,17 +396,7 @@ class Home extends MY_Controller
             die("Data tidak valid");
         } else {
             $data_que = $this->dbase->dataRow('queue_new', array('id' => $id));
-            //die(var_dump($data_que));
             $today = \Carbon\Carbon::now();
-
-            // $number = $this->dbase->dataRow("queue_poli_new", false, "MAX(number) as number");
-            // $nomor = $number->number;
-            // (int) $nomor;
-            // if ($nomor == null) {
-            //     $nomor = 1;
-            // } else {
-            //     $nomor++;
-            // }
 
             $cek = $this->dbase->dataRow('queue_poli_new', ['tanggal' => $today->format('Y-m-d'), 'number' => $data_que->number]);
 
