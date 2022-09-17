@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import axios from "axios";
-import {Howl, Howler} from 'howler';
+import { Howl, Howler } from 'howler';
+import jPlayer from "react-jplayer/lib/components/jPlayer/jPlayer";
+import $ from "../../../node_modules/jquery/dist/jquery";
 
 export default class BigScreenPoli extends React.Component {
     constructor(props) {
@@ -9,7 +11,8 @@ export default class BigScreenPoli extends React.Component {
         this.state = {
             playing: true,
             repeat: localStorage.getItem('repeat'),
-            data_que: { loket_name: "", que_kode: "", call_at:null},
+            data_que: { loket_name: "", que_kode: "", call_at: null },
+            video : null,
             current_count : 0, intervalId : null,
         }
 
@@ -20,20 +23,24 @@ export default class BigScreenPoli extends React.Component {
         this.readEntry = this.readEntry.bind(this);
         this.timer = this.timer.bind(this);
         this.getMedia = this.getMedia.bind(this);
+        this.getVideoPlayer = this.getVideoPlayer.bind(this);
     }
 
     componentDidMount() { 
         var intervalId = setInterval(() => this.timer(),100);
         this.setState({intervalId});
         this.readEntry();
+        setTimeout(() => {
+            this.getVideoPlayer();
+        },1000)
     }
     
-   async getMedia() {
+    async getMedia() {
        let stream = null;
-
-        try {
-            stream = await navigator.mediaDevices.getUserMedia(constraints);
-            console.log(stream);
+       
+       try {
+           stream = await navigator.mediaDevices.getUserMedia(constraints);
+           console.log(stream);
         } catch (err) {
             console.log(err);
         }
@@ -60,11 +67,6 @@ export default class BigScreenPoli extends React.Component {
                    
                     this.setState({ que });
                     if (this.state.data_que.que_kode !== "" && this.state.playing == true) {
-                        // if (this.state.data_que.call_at !== response.data.call_at) {
-                        //     this.opening(this.state.data_que.que_kode, 0);
-                        //     que.call_at = response.data.call_at;
-                        //     this.setState({ que });
-                        // }
                         this.opening(this.state.data_que.que_kode, 0);
                     }
                 }
@@ -77,6 +79,9 @@ export default class BigScreenPoli extends React.Component {
     }
     
     opening(kode, code) {
+        if (typeof myPlaylist !== 'undefined') {
+            myPlaylist.jPlayer('volume', .1);
+        }
         this.setState({ playing: false });
       
         let opening = new Audio();
@@ -104,22 +109,8 @@ export default class BigScreenPoli extends React.Component {
     ending2() {
         localStorage.setItem('repeat', false);
         let loket = this.state.data_que.loket_name;
-            if (loket === 'Umum') {
-                let poli_umum = new Audio(window.origin + '/assets/voices/' + 'poli_umum.mp3')
-                poli_umum.play();
-            } else if (loket == 'Mtbs') {
-                let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'poli_mtbs.mp3')
-                poli_umum.play();
-            } else if (loket == 'Kia') {
-                let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'poli_kia.mp3')
-                poli_umum.play();
-            } else if (loket == 'Gigi') {
-                let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'poli_gigi.mp3')
-                poli_umum.play();
-            } else if (loket == 'Askulap') {
-                let poli_umum = new Audio(window.origin + '/assets/voices/poli/' + 'poli_askulap.mp3')
-                poli_umum.play();
-            }
+        let poli = new Audio(window.origin + '/assets/voices/poli/' + loket.toLowerCase(this.state.data_que.loket_name) + '.mp3');
+        poli.play();
         this.setState({ playing: true });
     }
     
@@ -211,6 +202,25 @@ export default class BigScreenPoli extends React.Component {
                 }, 800)
                 return true
             }
+    }
+
+    async getVideoPlayer() {
+        let volume = 0;
+        if (this.state.playing == false) {
+            volume = 10;
+        } else {
+            volume = 100;
+        }
+        var video_width = document.querySelector('.videoWrapper').clientWidth - 30;
+        var video_height = document.querySelector('.videoWrapper').clientHeight - 30;
+        
+        let video = this.state.video;
+        video = 
+        this.setState({ video });
+        console.log(this.state.video.volume);
+
+        document.getElementById('jp_container_N').style.width = 300;
+        document.getElementById('jp_container_N').style.height = 500;
     }
 
     render() {

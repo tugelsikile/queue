@@ -195,34 +195,6 @@
 </head>
 
 <body>
-    <script>
-        // function getLocalStream() {
-        //     navigator.mediaDevices.getUserMedia({
-        //         video: false,
-        //         audio: true
-        //     }).then((stream) => {
-        //         window.localStream = stream; // A
-        //         window.localAudio.srcObject = stream; // B
-        //         window.localAudio.autoplay = true; // C
-        //     }).catch((err) => {
-        //         console.error(`you got an error: ${err}`)
-        //     });
-        // }
-
-
-
-        // getLocalStream();
-        navigator.permissions.query({
-            name: 'speaker'
-        }).then(permissionStatus => {
-            console.log(permissionStatus)
-            // in my browser on this page it logs:
-            //{
-            //   status: "prompt",
-            //   onchange: null,
-            // }
-        })
-    </script>
     <div class="background"></div>
     <div class="header">
         <img src="<?php echo base_url('assets/img/logo.png'); ?>" height="100px">
@@ -253,6 +225,10 @@
                 </div>
             </div>
         </div> -->
+    <link href="<?php echo base_url('assets/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css'); ?>" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<?php echo base_url('assets/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/jPlayer-2.9.2/dist/add-on/jplayer.playlist.min.js'); ?>"></script>
+
     <script src="<?php echo base_url('assets/js/big_screen_poli.js'); ?>"></script>
 
     <!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=gctISVcE"></script> -->
@@ -497,26 +473,13 @@
         var myPlaylist = new jPlayerPlaylist({
             jPlayer: "#jquery_jplayer_N",
             cssSelectorAncestor: "#jp_container_N"
-        }, [
-            <?php
-            if ($media) {
-                $lastElement = end($media);
-                foreach ($media as $k => $val) {
-            ?> {
-                        m4v: '<?php echo base_url('assets/video/' . $val->media_url); ?>',
-                        title: '<?php echo $val->media_name; ?>'
-                    }
-            <?php
-                    if ($val != $lastElement) {
-                        echo ',';
-                    }
-                }
-            }
-            ?>
-        ], {
+        }, [{
+            m4v: '<?php echo base_url('assets/video/Jenis_Pelayanan_PKM_Nagreg.mp4'); ?>',
+            title: 'asd'
+        }], {
             playlistOptions: {
                 enableRemoveControls: true,
-                autoPlay: true
+                autoPlay: false
             },
             swfPath: "<?php echo base_url('assets/jPlayer-2.9.2/dist/jplayer'); ?>",
             supplied: "ogv, m4v, oga, mp3",
@@ -525,7 +488,6 @@
             smoothPlayBar: true,
             keyEnabled: true,
             audioFullScreen: true,
-            volume: 0,
             repeat: true,
             loop: true,
             size: {
