@@ -195,6 +195,34 @@
 </head>
 
 <body>
+    <script>
+        // function getLocalStream() {
+        //     navigator.mediaDevices.getUserMedia({
+        //         video: false,
+        //         audio: true
+        //     }).then((stream) => {
+        //         window.localStream = stream; // A
+        //         window.localAudio.srcObject = stream; // B
+        //         window.localAudio.autoplay = true; // C
+        //     }).catch((err) => {
+        //         console.error(`you got an error: ${err}`)
+        //     });
+        // }
+
+
+
+        // getLocalStream();
+        navigator.permissions.query({
+            name: 'speaker'
+        }).then(permissionStatus => {
+            console.log(permissionStatus)
+            // in my browser on this page it logs:
+            //{
+            //   status: "prompt",
+            //   onchange: null,
+            // }
+        })
+    </script>
     <div class="background"></div>
     <div class="header">
         <img src="<?php echo base_url('assets/img/logo.png'); ?>" height="100px">

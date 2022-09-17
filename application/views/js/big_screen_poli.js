@@ -23,8 +23,6 @@ export default class BigScreenPoli extends React.Component {
     }
 
     componentDidMount() { 
-        //this.getMedia()
-       // window.open("chrome://settings");
         var intervalId = setInterval(() => this.timer(),100);
         this.setState({intervalId});
         this.readEntry();
@@ -222,7 +220,7 @@ export default class BigScreenPoli extends React.Component {
                     <div className="col-md-5" style={{paddingLeft:'0px'}}>
                         <div className="panel panel-danger antriWrap" style={{borderWidth:'10px'}}>
                             <div className="panel-heading" style={{textAlign:'center'}}>
-                                <strong style={{ fontSize: '30px' }} className="loket_name">Poli {this.state.data_que.loket_name}</strong>
+                                <strong style={{ fontSize: '30px' }} className="loket_name">{this.state.data_que.loket_name}</strong>
                             </div>
                             <div className="panel-body">
                                 <div className="nomorAntri">

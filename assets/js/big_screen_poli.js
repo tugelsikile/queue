@@ -174,8 +174,6 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      //this.getMedia()
-      // window.open("chrome://settings");
       var intervalId = setInterval(function () {
         return _this2.timer();
       }, 100);
@@ -466,7 +464,7 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
           fontSize: '30px'
         },
         className: "loket_name"
-      }, "Poli ", this.state.data_que.loket_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.state.data_que.loket_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nomorAntri"
