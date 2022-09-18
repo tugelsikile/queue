@@ -65,7 +65,6 @@
                     $('.loading').hide();
                     $('.table-antrian tbody').html('<tr><td align="center">' + dt.msg + '</td></tr>');
                 } else {
-                    console.log(dt.html);
                     $('.loading').hide();
                     $('.table-antrian tbody').html(dt.html);
                 }
@@ -79,7 +78,6 @@
             next_antri = $('.table-antrian tbody tr').eq(0).attr('class');
         }
         next_antri = next_antri.replace("row_", "");
-        //console.log(next_antri);
         var ob = {
             'data-id': next_antri
         };
@@ -152,12 +150,10 @@
                 'que_id': queue_id,
             },
             error: function(e) {
-                console.log(e.responseText);
                 alert(e.responseText);
             },
             success: function(res) {
                 alert(res);
-                console.log(res);
             }
         });
     });

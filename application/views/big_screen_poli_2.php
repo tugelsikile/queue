@@ -225,9 +225,6 @@
                 </div>
             </div>
         </div> -->
-    <link href="<?php echo base_url('assets/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css'); ?>" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="<?php echo base_url('assets/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/jPlayer-2.9.2/dist/add-on/jplayer.playlist.min.js'); ?>"></script>
 
     <script src="<?php echo base_url('assets/js/big_screen_poli.js'); ?>"></script>
 
@@ -462,7 +459,7 @@
             </marquee>
         </div>
     </div>
-    <link href="<?php echo base_url('assets/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css'); ?>" rel="stylesheet" type="text/css" />
+    <!-- <link href="<?php echo base_url('assets/jPlayer-2.9.2/dist/skin/blue.monday/css/jplayer.blue.monday.min.css'); ?>" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="<?php echo base_url('assets/jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/jPlayer-2.9.2/dist/add-on/jplayer.playlist.min.js'); ?>"></script>
 
@@ -502,7 +499,7 @@
             'width': video_width,
             'height': video_height
         });
-    </script>
+    </script> -->
     </div>
 </body>
 

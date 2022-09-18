@@ -231,7 +231,6 @@
                         type: 'POST',
                         dataType: 'JSON',
                         success: function(dt) {
-                            console.log(dt);
                             if (dt.t === 1) {
                                 $('.loket_name').html(dt.loket_name);
                                 $('.nomorAntri').html(dt.que_kode);
@@ -263,13 +262,12 @@
                 menuju.play();
                 setTimeout(function() {
                     ending2();
-                    playing = false;
+                    // playing = false;
                 }, 2000);
             }
 
             function ending2() {
                 let loket = $('.loket_name').html();
-                console.log(loket);
                 if (loket == 'Loket 1') {
                     let loket_1 = new Audio(window.origin + '/assets/voices/' + 'loket1.mp3');
                     loket_1.play();
@@ -277,6 +275,8 @@
                     let loket_2 = new Audio(window.origin + '/assets/voices/' + 'loket2.mp3');
                     loket_2.play();
                 }
+                playing = false;
+                myPlaylist.options.volume = 100;
             }
 
             function text_to_speech(kode, cek = 0) {
@@ -459,26 +459,13 @@
             var myPlaylist = new jPlayerPlaylist({
                 jPlayer: "#jquery_jplayer_N",
                 cssSelectorAncestor: "#jp_container_N"
-            }, [
-                <?php
-                if ($media) {
-                    $lastElement = end($media);
-                    foreach ($media as $k => $val) {
-                ?> {
-                            m4v: '<?php echo base_url('assets/video/' . $val->media_url); ?>',
-                            title: '<?php echo $val->media_name; ?>'
-                        }
-                <?php
-                        if ($val != $lastElement) {
-                            echo ',';
-                        }
-                    }
-                }
-                ?>
-            ], {
+            }, [{
+                m4v: '<?php echo base_url('assets/video/video_layar_pendaftaran.mp4'); ?>',
+                title: 'asd'
+            }], {
                 playlistOptions: {
                     enableRemoveControls: true,
-                    autoPlay: true
+                    autoPlay: false
                 },
                 swfPath: "<?php echo base_url('assets/jPlayer-2.9.2/dist/jplayer'); ?>",
                 supplied: "ogv, m4v, oga, mp3",
@@ -487,7 +474,7 @@
                 smoothPlayBar: true,
                 keyEnabled: true,
                 audioFullScreen: true,
-                volume: 0,
+                volume: 50,
                 repeat: true,
                 loop: true,
                 size: {

@@ -81,21 +81,21 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./application/views/js/big_screen_poli.js":
-/*!*************************************************!*\
-  !*** ./application/views/js/big_screen_poli.js ***!
-  \*************************************************/
+/***/ "./application/views/js/big_screen_pendaftaran.js":
+/*!********************************************************!*\
+  !*** ./application/views/js/big_screen_pendaftaran.js ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BigScreenPoli; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BigScreenPendaftaran; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -146,15 +146,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
-  _inherits(BigScreenPoli, _React$Component);
+var BigScreenPendaftaran = /*#__PURE__*/function (_React$Component) {
+  _inherits(BigScreenPendaftaran, _React$Component);
 
-  var _super = _createSuper(BigScreenPoli);
+  var _super = _createSuper(BigScreenPendaftaran);
 
-  function BigScreenPoli(props) {
+  function BigScreenPendaftaran(props) {
     var _this;
 
-    _classCallCheck(this, BigScreenPoli);
+    _classCallCheck(this, BigScreenPendaftaran);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -182,7 +182,7 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(BigScreenPoli, [{
+  _createClass(BigScreenPendaftaran, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -257,7 +257,7 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
 
       Promise.resolve(axios__WEBPACK_IMPORTED_MODULE_2___default()({
         method: 'post',
-        url: window.origin + '/index.php/big_screen/read_entry_poli'
+        url: window.origin + '/index.php/big_screen/read_entry'
       })).then(function (response) {
         console.log(response.data);
 
@@ -315,9 +315,16 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
       var _this6 = this;
 
       localStorage.setItem('repeat', false);
-      var loket = this.state.data_que.loket_name;
-      var poli = new Audio(window.origin + '/assets/voices/poli/' + loket.toLowerCase(this.state.data_que.loket_name) + '.mp3');
-      poli.play();
+      var loket = _node_modules_jquery_dist_jquery__WEBPACK_IMPORTED_MODULE_5___default()('.loket_name').html();
+
+      if (loket == 'Loket 1') {
+        var loket_1 = new Audio(window.origin + '/assets/voices/' + 'loket1.mp3');
+        loket_1.play();
+      } else {
+        var loket_2 = new Audio(window.origin + '/assets/voices/' + 'loket2.mp3');
+        loket_2.play();
+      }
+
       setTimeout(function () {
         _this6.setState({
           playing: true
@@ -469,9 +476,12 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel-body videoWrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "jp_container_N"
+        id: "jp_container_N",
+        style: {
+          borderWidth: '10px'
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_player__WEBPACK_IMPORTED_MODULE_6___default.a, {
-        url: window.origin + '/assets/video/Jenis_Pelayanan_PKM_Nagreg.mp4',
+        url: window.origin + '/assets/video/video_layar_pendaftaran.mp4',
         width: '100%',
         height: '100%',
         playing: true,
@@ -479,7 +489,7 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
         loop: true,
         onPlay: function onPlay() {
           var video_height = document.querySelector('#jp_container_N').clientHeight;
-          var video_width = document.querySelector('.videoWrapper').clientWidth - 30;
+          var video_width = document.querySelector('.videoWrapper').clientWidth;
           var video = _this8.state.video;
           video.width = video_width;
           video.height = video_height;
@@ -492,13 +502,13 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return BigScreenPoli;
+  return BigScreenPendaftaran;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
 
-if (document.getElementById('big_screen_poli')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BigScreenPoli, null), document.getElementById('big_screen_poli'));
+if (document.getElementById('big_screen_pendaftaran')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BigScreenPendaftaran, null), document.getElementById('big_screen_pendaftaran'));
 }
 
 /***/ }),
@@ -69769,14 +69779,14 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ 0:
-/*!*******************************************************!*\
-  !*** multi ./application/views/js/big_screen_poli.js ***!
-  \*******************************************************/
+/***/ 1:
+/*!**************************************************************!*\
+  !*** multi ./application/views/js/big_screen_pendaftaran.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\project\queue\application\views\js\big_screen_poli.js */"./application/views/js/big_screen_poli.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\project\queue\application\views\js\big_screen_pendaftaran.js */"./application/views/js/big_screen_pendaftaran.js");
 
 
 /***/ })
