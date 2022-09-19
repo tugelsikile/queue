@@ -443,7 +443,7 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
         className: "panel panel-danger antriWrap",
         style: {
           borderWidth: '10px',
-          height: this.state.video.height + 30
+          height: this.state.video.height + 50
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel-heading",
@@ -467,8 +467,7 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel panel-danger",
         style: {
-          borderWidth: '10px',
-          height: this.state.video.height + 50
+          borderWidth: '10px'
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel-body videoWrapper"

@@ -205,7 +205,7 @@ export default class BigScreenPoli extends React.Component {
             <>
                 <div className="content">
                     <div className="col-md-5" style={{ paddingLeft: '0px' }}>
-                        <div className="panel panel-danger antriWrap" style={{ borderWidth: '10px', height: this.state.video.height + 30 }}>
+                        <div className="panel panel-danger antriWrap" style={{ borderWidth: '10px', height: this.state.video.height + 50 }}>
                             <div className="panel-heading" style={{ textAlign: 'center' }}>
                                 <strong style={{ fontSize: '30px' }} className="loket_name">{this.state.data_que.loket_name}</strong>
                             </div>
@@ -219,7 +219,7 @@ export default class BigScreenPoli extends React.Component {
 
 
                     <div className="col-md-7" style={{ paddingRight: '0px' }}>
-                        <div className="panel panel-danger" style={{ borderWidth: '10px', height: this.state.video.height + 50 }}>
+                        <div className="panel panel-danger" style={{ borderWidth: '10px'}}>
                             <div className="panel-body videoWrapper">
 
                                 <div id="jp_container_N">
