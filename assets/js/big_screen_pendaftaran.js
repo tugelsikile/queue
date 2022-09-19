@@ -315,16 +315,9 @@ var BigScreenPendaftaran = /*#__PURE__*/function (_React$Component) {
       var _this6 = this;
 
       localStorage.setItem('repeat', false);
-      var loket = _node_modules_jquery_dist_jquery__WEBPACK_IMPORTED_MODULE_5___default()('.loket_name').html();
-
-      if (loket == 'Loket 1') {
-        var loket_1 = new Audio(window.origin + '/assets/voices/' + 'loket1.mp3');
-        loket_1.play();
-      } else {
-        var loket_2 = new Audio(window.origin + '/assets/voices/' + 'loket2.mp3');
-        loket_2.play();
-      }
-
+      var loket = this.state.data_que.loket_name;
+      var poli = new Audio(window.origin + '/assets/voices/' + loket.toLowerCase(this.state.data_que.loket_name) + '.mp3');
+      poli.play();
       setTimeout(function () {
         _this6.setState({
           playing: true
@@ -450,7 +443,7 @@ var BigScreenPendaftaran = /*#__PURE__*/function (_React$Component) {
         className: "panel panel-danger antriWrap",
         style: {
           borderWidth: '10px',
-          height: this.state.video.height + 30
+          height: this.state.video.height + 50
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel-heading",
@@ -472,14 +465,15 @@ var BigScreenPendaftaran = /*#__PURE__*/function (_React$Component) {
           paddingRight: '0px'
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel panel-danger"
+        className: "panel panel-danger",
+        style: {
+          borderWidth: '10px',
+          borderColor: '#ebccd1'
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel-body videoWrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "jp_container_N",
-        style: {
-          borderWidth: '10px'
-        }
+        id: "jp_container_N"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_player__WEBPACK_IMPORTED_MODULE_6___default.a, {
         url: window.origin + '/assets/video/video_layar_pendaftaran.mp4',
         width: '100%',

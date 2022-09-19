@@ -465,7 +465,11 @@ var BigScreenPoli = /*#__PURE__*/function (_React$Component) {
           paddingRight: '0px'
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel panel-danger"
+        className: "panel panel-danger",
+        style: {
+          borderWidth: '10px',
+          height: this.state.video.height + 50
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel-body videoWrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

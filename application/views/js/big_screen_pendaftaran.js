@@ -101,14 +101,9 @@ export default class BigScreenPendaftaran extends React.Component {
 
     ending2() {
         localStorage.setItem('repeat', false);
-        let loket = $('.loket_name').html();
-        if (loket == 'Loket 1') {
-            let loket_1 = new Audio(window.origin + '/assets/voices/' + 'loket1.mp3');
-            loket_1.play();
-        } else {
-            let loket_2 = new Audio(window.origin + '/assets/voices/' + 'loket2.mp3');
-            loket_2.play();
-        }
+        let loket = this.state.data_que.loket_name;
+        let poli = new Audio(window.origin + '/assets/voices/' + loket.toLowerCase(this.state.data_que.loket_name) + '.mp3');
+        poli.play();
         setTimeout(() => {
             this.setState({ playing: true });
         }, 1200)
@@ -210,7 +205,7 @@ export default class BigScreenPendaftaran extends React.Component {
             <>
                 <div className="content">
                     <div className="col-md-5" style={{ paddingLeft: '0px' }}>
-                        <div className="panel panel-danger antriWrap" style={{ borderWidth: '10px', height: this.state.video.height + 30 }}>
+                        <div className="panel panel-danger antriWrap" style={{ borderWidth: '10px', height: this.state.video.height + 50 }}>
                             <div className="panel-heading" style={{ textAlign: 'center' }}>
                                 <strong style={{ fontSize: '30px' }} className="loket_name">{this.state.data_que.loket_name}</strong>
                             </div>
@@ -224,10 +219,10 @@ export default class BigScreenPendaftaran extends React.Component {
 
 
                     <div className="col-md-7" style={{ paddingRight: '0px' }}>
-                        <div className="panel panel-danger">
+                        <div className="panel panel-danger" style={{ borderWidth: '10px', borderColor:'#ebccd1' }}>
                             <div className="panel-body videoWrapper">
 
-                                <div id="jp_container_N" style={{ borderWidth: '10px' }}>
+                                <div id="jp_container_N">
                                     <ReactPlayer
                                         url={window.origin + '/assets/video/video_layar_pendaftaran.mp4'}
                                         width={'100%'}

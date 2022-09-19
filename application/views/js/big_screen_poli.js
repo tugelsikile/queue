@@ -219,7 +219,7 @@ export default class BigScreenPoli extends React.Component {
 
 
                     <div className="col-md-7" style={{ paddingRight: '0px' }}>
-                        <div className="panel panel-danger">
+                        <div className="panel panel-danger" style={{ borderWidth: '10px', height: this.state.video.height + 50 }}>
                             <div className="panel-body videoWrapper">
 
                                 <div id="jp_container_N">
